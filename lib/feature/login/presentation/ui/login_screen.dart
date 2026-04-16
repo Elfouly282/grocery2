@@ -123,13 +123,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             Align(
                               alignment: Alignment.centerRight,
                               child: TextButton(
-                                onPressed: () {}, // هنضيف الـ Navigation بعدين
+                                onPressed: () {},
                                 child: Text(
                                   "Forgot Password?",
                                   style: GoogleFonts.inter(
                                     fontSize: 12.sp,
                                     fontWeight: FontWeight.w500,
-                                    color: const Color(0xFF1B2E58), // اللون الكحلي اللي في الصورة
+                                    color: const Color(0xFF1B2E58),
                                   ),
                                 ),
                               ),
@@ -172,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Image.asset("assets/icons/googleicon.png", height: 20.h), // اتأكد إن اللوجو عندك
+                                  Image.asset("assets/icons/googleicon.png", height: 20.h),
                                   Gap(8.w),
                                   Text(
                                     "Login with Google",
@@ -198,7 +198,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    // هنا الـ Navigation لبرانش الـ Signup اللي دمجناه
                                   },
                                   child: Text(
                                     "Sign up",
