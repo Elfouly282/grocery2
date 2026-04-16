@@ -64,7 +64,7 @@ class _SignupViewState extends State<SignupView> {
                             autofillHints: [AutofillHints.email, AutofillHints.telephoneNumber],
                             controller: _emailOrPhoneController,
                             keyboardType: TextInputType.visiblePassword,
-                            validator: AppValidators.emailOrPhone,
+                            validator: AppValidators.email,
                             hintText: 'Email or Phone Number',
                             isPhoneField: true,
                             prefixIcon: Image.asset('assets/icons/email_icon.png',

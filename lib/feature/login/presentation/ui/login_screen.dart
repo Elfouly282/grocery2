@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               autofillHints: [AutofillHints.email, AutofillHints.telephoneNumber],
                               controller: _emailOrPhoneController,
                               keyboardType: TextInputType.visiblePassword,
-                              validator: AppValidators.emailOrPhone,
+                              validator: AppValidators.email,
                               hintText: 'Sarahem@gmail.com',
                               isPhoneField: true,
                               prefixIcon: Image.asset('assets/icons/email_icon.png',
