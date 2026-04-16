@@ -6,17 +6,21 @@ import '../../../../core/shared_widgets/custom_button.dart';
 class CheckboxWithButton extends StatelessWidget {
   final bool isChecked;
   final ValueChanged<bool?> onChanged;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
+  final bool isLoading;
 
   const CheckboxWithButton({
     super.key,
     required this.isChecked,
     required this.onChanged,
     required this.onPressed,
+    this.isLoading = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final isEnabled = isChecked && !isLoading;
+
     return Column(
       children: [
         Row(
@@ -33,9 +37,11 @@ class CheckboxWithButton extends StatelessWidget {
         ),
 
         const SizedBox(height: 12),
+
         CustomButton(
-          title: 'Sign Up',
-          onPressed: isChecked ? onPressed : null,
+          title: isLoading ? 'Loading...' : 'Sign Up',
+          onPressed: isEnabled ? onPressed : null,
+          isLoading: isLoading,
         ),
       ],
     );

@@ -9,23 +9,38 @@ class AppValidators {
     return null;
   }
 
-
-  static String? emailOrPhone(String? value) {
+  static String? email(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return 'Field is required';
+      return 'Email is required';
     }
-    final input = value.trim();
+
     final emailRegex = RegExp(
       r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
     );
+
+    if (!emailRegex.hasMatch(value.trim())) {
+      return 'Enter valid email';
+    }
+
+    return null;
+  }
+
+  static String? phone(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Phone is required';
+    }
+
     final phoneRegex = RegExp(
       r'^(\+20|0)?1[0-5][0-9]{8}$',
     );
-    if (emailRegex.hasMatch(input)) return null;
-    if (phoneRegex.hasMatch(input)) return null;
 
-    return 'Enter valid email or phone';
+    if (!phoneRegex.hasMatch(value.trim())) {
+      return 'Enter valid phone number';
+    }
+
+    return null;
   }
+
 
 
   static String? password(String? value) {
