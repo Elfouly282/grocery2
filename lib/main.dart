@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/constants/api_constant.dart';
+import 'core/constants/dio_helper.dart';
+import 'core/constants/preference_manager.dart';
 import 'feature/login/presentation/ui/login_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await PreferenceManager().init();
+  DioHelper.init(baseUrl: ApiConstant.baseUrl);
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
