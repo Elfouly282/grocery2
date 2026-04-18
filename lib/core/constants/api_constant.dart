@@ -1,11 +1,12 @@
 class ApiConstant {
   /// Base URL for API endpoints
-  static const String baseUrl = 'https://api.example.com';
+  static const String baseUrl = 'https://grocery.newcinderella.online';
 
   /// API endpoints
   static const String login = '/auth/login';
-  static const String signup = '/auth/signup';
-  static const String logout = '/auth/logout';
+  static const String signup = '/api/auth/register';
+  static const String categories = '/api/subcategories';
+  static const String detailsOfCategory = '/api/subcategories/1';
   static const String getProfile = '/user/profile';
   static const String updateProfile = '/user/profile/update';
   static const String getProducts = '/products';
@@ -27,4 +28,3 @@ class ApiConstant {
     'Content-Type': 'application/json',
   };
 }
-

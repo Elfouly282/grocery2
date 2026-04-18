@@ -53,6 +53,11 @@ class AppTextStyle {
     fontWeight: FontWeight.w600,
     height: 1.5,
   );
+  static const TextStyle titleMedium16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    height: 1.5,
+  );
 
   static const TextStyle titleSmall = TextStyle(
     fontSize: 12,
