@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:grocery2/core/constants/logging_interceptors.dart';
 
 class DioHelper {
   DioHelper._();
@@ -60,11 +60,7 @@ class DioHelper {
 
     if (enableLogger) {
       _dio.interceptors.add(
-        PrettyDioLogger(
-          requestBody: true,
-          requestHeader: true,
-          responseHeader: true,
-        ),
+        LoggingInterceptor()
       );
     }
   }
