@@ -1,4 +1,4 @@
-class SubCategoryModel {
+class CategoryModel {
   final int id;
   final String name;
   final String slug;
@@ -8,7 +8,7 @@ class SubCategoryModel {
   final int sortOrder;
   final DateTime createdAt;
 
-  SubCategoryModel({
+  CategoryModel({
     required this.id,
     required this.name,
     required this.slug,
@@ -19,8 +19,8 @@ class SubCategoryModel {
     required this.createdAt,
   });
 
-  factory SubCategoryModel.fromJson(Map<String, dynamic> json) {
-    return SubCategoryModel(
+  factory CategoryModel.fromJson(Map<String, dynamic> json) {
+    return CategoryModel(
       id: json['id'],
       name: json['name'] ?? '',
       slug: json['slug'] ?? '',

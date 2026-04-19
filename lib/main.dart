@@ -4,7 +4,7 @@ import 'core/constants/api_constant.dart';
 import 'core/constants/dio_helper.dart';
 import 'core/constants/preference_manager.dart';
 import 'core/id/get_it.dart';
-import 'feature/subcategory/presentation/ui/subcategory_view.dart';
+import 'feature/category/presentation/ui/category_view.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Grocery',
         debugShowCheckedModeBanner: false,
-        home: SubcategoryView(),
+        home: CategoryView(),
       ),
     );
   }

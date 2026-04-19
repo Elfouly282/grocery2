@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../feature/subcategory/data/models/SubCategoryModel.dart';
+import '../../feature/category/data/models/CategoryModel.dart';
 import '../constants/app_color.dart';
 import '../utils/text_style.dart';
 
-class CategoriesHorizontalList extends StatelessWidget {
-  const CategoriesHorizontalList({
+class SubCategoriesHorizontalList extends StatelessWidget {
+  const SubCategoriesHorizontalList({
     super.key,
     required this.categories,
     required this.selectedIndex,
     required this.onTap,
   });
 
-  final List<SubCategoryModel> categories;
+  final List<CategoryModel> categories;
   final int selectedIndex;
   final Function(int index) onTap;
 

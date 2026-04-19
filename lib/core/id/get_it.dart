@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:grocery2/core/constants/api_constant.dart';
-import '../../feature/subcategory/data/logic/repo/sub_catigory_repo_impl.dart';
-import '../../feature/subcategory/presentation/cubit/subcategory_cubit.dart';
+import '../../feature/category/data/logic/repo/category_repo_impl.dart';
+import '../../feature/category/presentation/cubit/category_cubit.dart';
 import '../constants/dio_helper.dart';
 
 
@@ -14,6 +14,10 @@ Future<void> setupLocator() async {
   getIt.registerLazySingleton<Dio>(() => DioHelper.dio);
   getIt.registerLazySingleton<CategoryRepoImpl>(
         () => CategoryRepoImpl(),
+  );
+
+  getIt.registerLazySingleton<CategoryCubit>(
+        () => CategoryCubit(getIt<CategoryRepoImpl>(),),
   );
 
 }

@@ -5,8 +5,9 @@ class ApiConstant {
   /// API endpoints
   static const String login = '/auth/login';
   static const String signup = '/api/auth/register';
-  static const String categories = '/api/subcategories';
-  static const String detailsOfCategory = '/api/subcategories/1';
+  static const String subcategories = '/api/categories';
+  static String detailsOfSubcategories(int id) =>
+      '/api/categories/$id/meals';
   static const String getProfile = '/user/profile';
   static const String updateProfile = '/user/profile/update';
   static const String getProducts = '/products';

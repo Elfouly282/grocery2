@@ -1,11 +1,11 @@
 
-import '../../data/models/SubCategoryModel.dart';
+import '../../data/models/CategoryModel.dart';
 
 class DummyData {
-  static List<SubCategoryModel> categories =
+  static List<CategoryModel> categories =
   List.generate(
     6,
-        (index) => SubCategoryModel(
+        (index) => CategoryModel(
          name: 'Loading...',
           imageUrl: '',
           id: 1,
