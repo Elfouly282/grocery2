@@ -33,5 +33,6 @@ class AppColor {
   static const Color textPrimary = Color(0xFF212121);
   static const Color textSecondary = Color(0xFF757575);
   static const Color textHint = Color(0xFFBDBDBD);
+  static const Color text=Color(0xFF014162);
 }
 
