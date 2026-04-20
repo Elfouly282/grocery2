@@ -25,7 +25,7 @@ class AppColors {
   static const Color info = Color(0xFF42A5F5);
 
   /// Background Colors
-  static const Color backgroundColor = Color(0xFFFAFAFA);
+  static const Color backgroundColor = Color(0xFFF7FCFF);
   static const Color surfaceColor = Color(0xFFFFFFFF);
   static const Color borderColor = Color(0xFFE0E0E0);
 
@@ -33,4 +33,5 @@ class AppColors {
   static const Color textPrimary = Color(0xFF212121);
   static const Color textSecondary = Color(0xFF757575);
   static const Color textHint = Color(0xFFBDBDBD);
+  static const Color textBlueDark = Color(0xFF014162);
 }
