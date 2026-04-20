@@ -1,6 +1,6 @@
 class ApiConstant {
   /// Base URL for API endpoints
-  static const String baseUrl = 'https://api.example.com';
+  static const String baseUrl = 'https://grocery.newcinderella.online';
 
   /// API endpoints
   static const String login = '/auth/login';
@@ -9,7 +9,7 @@ class ApiConstant {
   static const String getProfile = '/user/profile';
   static const String updateProfile = '/user/profile/update';
   static const String getProducts = '/products';
-  static const String getProductDetails = '/products/:id';
+  static const String getProductDetails = '/api/meals/:id';
   static const String addToCart = '/cart/add';
   static const String removeFromCart = '/cart/remove';
   static const String getCart = '/cart';
