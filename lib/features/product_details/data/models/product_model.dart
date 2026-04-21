@@ -16,9 +16,9 @@ class ProductModel extends ProductEntity {
     required super.hasOffer,
     required super.isFeatured,
     required super.features,
-    super.size,
+    required super.size,
     super.brand,
-    super.includes,
+    required super.includes,
     super.howToUse,
     required super.stockQuantity,
     required super.inStock,
@@ -26,6 +26,8 @@ class ProductModel extends ProductEntity {
     required super.isAvailable,
     super.category,
     super.subcategory,
+    required super.expiryDate,
+    required super.isExpired,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -36,6 +38,10 @@ class ProductModel extends ProductEntity {
       description: json['description'],
       image: json['image_url'] ?? "",
       offerTitle: json['offer_title'],
+      expiryDate: json['expiry_date'] != null
+          ? DateTime.tryParse(json['expiry_date'] as String) ?? DateTime(1970, 1, 1)
+          : DateTime(1970, 1, 1),
+      isExpired: json['is_expired'] ?? false,
       price: (json['price']).toDouble(),
       discountPrice: (json['discount_price']).toDouble(),
       finalPrice: (json['final_price']).toDouble(),
@@ -44,9 +50,9 @@ class ProductModel extends ProductEntity {
       hasOffer: json['has_offer'] ?? false,
       isFeatured: json['is_featured'] ?? false,
       features: json['features'] ?? "",
-      size: json['size'],
+      size: json['size'] ?? "",
       brand: json['brand'],
-      includes: json['includes'],
+      includes: json['includes'] ?? "",
       howToUse: json['how_to_use'],
       stockQuantity: json['stock_quantity'] ?? 0,
       inStock: json['in_stock'] ?? false,
@@ -63,11 +69,7 @@ class ProductModel extends ProductEntity {
 }
 
 class CategoryModel extends CategoryEntity {
-  CategoryModel({
-    required super.id,
-    required super.name,
-    required super.slug,
-  });
+  CategoryModel({required super.id, required super.name, required super.slug});
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     return CategoryModel(

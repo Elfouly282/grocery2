@@ -5,6 +5,7 @@ class ProductEntity {
   final String description;
   final String image;
   final String? offerTitle;
+  final DateTime expiryDate;
   final double price;
   final double discountPrice;
   final double finalPrice;
@@ -13,10 +14,11 @@ class ProductEntity {
   final bool hasOffer;
   final bool isFeatured;
   final String features;
-  final String? size;
+  final String size;
   final String? brand;
-  final String? includes;
+  final String includes;
   final String? howToUse;
+  final bool isExpired;
   final int stockQuantity;
   final bool inStock;
   final int soldCount;
@@ -39,9 +41,9 @@ class ProductEntity {
     required this.hasOffer,
     required this.isFeatured,
     required this.features,
-    this.size,
+    required this.size,
     this.brand,
-    this.includes,
+    required this.includes,
     this.howToUse,
     required this.stockQuantity,
     required this.inStock,
@@ -49,6 +51,8 @@ class ProductEntity {
     required this.isAvailable,
     this.category,
     this.subcategory,
+    required this.expiryDate,
+    required this.isExpired,
   });
 }
 

@@ -18,7 +18,7 @@ class ProductImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
       height: 220.h,
       width: 340.w,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r)),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery2/features/product_details/presentation/widgets/product_details.dart';
 
 import '../../../../core/constants/custom_app_bar.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -39,24 +40,40 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             final product = state.product;
 
             return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ProductImage(imageUrl: product.image),
-
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 24),
-                        ProductDescription(product: product),
-                        const SizedBox(height: 24),
-                        const ProductBottomBar(),
-                      ],
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ProductImage(imageUrl: product.image),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ProductDetails(
+                            includes: product.includes,
+                            size: product.size,
+                            expiryDate: product.expiryDate,
+                            isExpired: product.isExpired,
+                            title: product.title,
+                            price: product.price,
+                            discountPrice: product.discountPrice,
+                            finalPrice: product.finalPrice,
+                            hasOffer: product.hasOffer,
+                            offerTitle: product.offerTitle,
+                            rating: product.rating,
+                            ratingCount: product.ratingCount,
+                          ),
+                          const SizedBox(height: 16),
+                          ProductDescription(product: product),
+                          const SizedBox(height: 16),
+                          const ProductBottomBar(),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           } else if (state is ProductDetailsError) {
