@@ -1,6 +1,6 @@
 class ApiConstant {
   /// Base URL for API endpoints
-  static const String baseUrl = 'https://api.example.com';
+  static const String baseUrl = 'https://grocery.newcinderella.online';
 
   /// API endpoints
   static const String login = '/auth/login';
@@ -27,4 +27,3 @@ class ApiConstant {
     'Content-Type': 'application/json',
   };
 }
-

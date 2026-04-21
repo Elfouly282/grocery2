@@ -27,7 +27,9 @@ class TabSelector extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
+                      width: 1.5,
                       color: isSelected ? Color(0xff014162) : Color(0xff888888),
+                      // style: BorderStyle.solid,
                     ),
                   ),
                 ),

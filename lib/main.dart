@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:grocery2/add_new_list.dart';
+import 'package:grocery2/add_new_list/add_new_list.dart';
+import 'package:grocery2/core/constants/dio_helper.dart';
 
 void main() {
+  DioHelper.init(baseUrl: "https://grocery.newcinderella.online");
   runApp(const MyApp());
 }
 
