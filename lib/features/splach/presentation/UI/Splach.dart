@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:grocery2/features/on_boarding/presentation/UI/first_board.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
-
+   
   @override
   State<SplashView> createState() => _SplashViewState();
 }
@@ -60,6 +61,9 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
     );
 
     _controller.forward();
+      Future.delayed(const Duration(milliseconds  : 500), () {
+       Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => FirstBoard()));
+      });
   }
 
   @override
