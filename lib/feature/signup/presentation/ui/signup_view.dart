@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery2/feature/signup/data/models/SignupRequest.dart';
@@ -20,15 +21,14 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
-  final _formKey = GlobalKey<FormState>();
 
+  final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  bool isAccepted = false;
 
   @override
   void dispose() {
@@ -40,12 +40,7 @@ class _SignupViewState extends State<SignupView> {
     super.dispose();
   }
 
-  String formatPhone(String phone) {
-    if (phone.startsWith('0')) {
-      return '+2$phone';
-    }
-    return phone;
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -125,12 +120,7 @@ class _SignupViewState extends State<SignupView> {
                               SizedBox(height: 8.h),
                               CustomTextFormField(
                                 controller: _nameController,
-                                validator: (value) {
-                                  final required =
-                                  AppValidators.required(value);
-                                  if (required != null) return required;
-                                  return AppValidators.minLength(value, 5);
-                                },
+                                validator: AppValidators.username,
                                 hintText: 'User Name',
                                 prefixIcon: Image.asset(
                                   'assets/icons/user_icon.png',
@@ -169,20 +159,20 @@ class _SignupViewState extends State<SignupView> {
                               ),
                               SizedBox(height: 12.h),
                               BlocBuilder<SignupCubit, SignupState>(
+
                                 builder: (context, state) {
+                                  final cubit = context.read<SignupCubit>();
+
                                   final isLoading = state is SignupLoading;
                                   return CheckboxWithButton(
-                                    isChecked: isAccepted,
-                                    isLoading: isLoading,
+                                    isChecked: cubit.isAccepted,                                    isLoading: isLoading,
                                     onChanged: (value) {
-                                      setState(() {
-                                        isAccepted = value ?? false;
-                                      });
+                                      cubit.toggleAccepted(value ?? false);
                                     },
                                     onPressed: () {
                                       if (!_formKey.currentState!.validate()) return;
 
-                                      if (!isAccepted) {
+                                      if (!cubit.isAccepted) {
                                         CustomSnackBar().errorBar(
                                           context,
                                           'Please accept terms',
@@ -190,13 +180,14 @@ class _SignupViewState extends State<SignupView> {
                                         return;
                                       }
 
-                                      context.read<SignupCubit>().signup(
+                                      cubit.signup(
                                         request: SignupRequest(
                                           username: _nameController.text,
                                           email: _emailController.text,
-                                          phone: formatPhone(_phoneController.text),
+                                          phone: cubit.
+                                          formatPhone(_phoneController.text),
                                           password: _passwordController.text,
-                                          agreeTerms: isAccepted,
+                                          agreeTerms: cubit.isAccepted,
                                             ),
 
                                       );
@@ -204,8 +195,7 @@ class _SignupViewState extends State<SignupView> {
                                   );
                                 },
                               ),
-                              SizedBox(height: 20.h),
-
+                              SizedBox(height: 10.h),
                               Row(
                                 mainAxisAlignment:
                                 MainAxisAlignment.center,
@@ -225,7 +215,6 @@ class _SignupViewState extends State<SignupView> {
                                   ),
                                 ],
                               ),
-
                               SizedBox(height: 20.h),
                             ],
                           ),

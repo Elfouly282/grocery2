@@ -1,7 +1,6 @@
 class ApiConstant {
   /// Base URL for API endpoints
   static const String baseUrl = 'https://grocery.newcinderella.online';
-
   /// API endpoints
   static const String login = '/auth/login';
   static const String signup = '/api/auth/register';

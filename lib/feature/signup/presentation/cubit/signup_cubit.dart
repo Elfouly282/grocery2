@@ -14,6 +14,22 @@ class SignupCubit extends Cubit<SignupState> {
 
   SignupCubit(this.signupRepoImpl) : super(SignupInitial());
 
+
+  bool isAccepted = false;
+
+
+  String formatPhone(String phone) {
+    if (phone.startsWith('0'))
+    {
+      return '+2$phone';
+    }
+    return phone;
+  }
+
+  void toggleAccepted(bool value) {
+    isAccepted = value;
+    emit(SignupInitial()); // أو state مخصوص
+  }
   Future<void> signup({required SignupRequest request}) async {
     emit(SignupLoading());
 

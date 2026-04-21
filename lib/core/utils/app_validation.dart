@@ -25,6 +25,21 @@ class AppValidators {
     return null;
   }
 
+
+  static String? username(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Username is required';
+    }
+
+    final regex = RegExp(r'^[a-zA-Z0-9_-]+$');
+
+    if (!regex.hasMatch(value)) {
+      return 'Username can only contain letters, numbers, _ and -';
+    }
+
+    return null;
+  }
+
   static String? phone(String? value) {
     if (value == null || value.trim().isEmpty) {
       return 'Phone is required';
