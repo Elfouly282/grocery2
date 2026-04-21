@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery2/add_new_list/add_new_list.dart';
 import 'package:grocery2/core/constants/dio_helper.dart';
+import 'package:grocery2/help_and_support/help_and_support.dart';
 
 void main() {
   DioHelper.init(baseUrl: "https://grocery.newcinderella.online");
@@ -107,6 +108,15 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HelpAndSupport()),
+                );
+              },
+              child: const Text("Go to help and support page"),
             ),
           ],
         ),
