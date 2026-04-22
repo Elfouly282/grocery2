@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/app_color.dart';
 import '../../../../core/constants/snakbar.dart';
-import '../../../../core/id/get_it.dart';
+import '../../../../core/di/get_it.dart';
 import '../../../../core/shared_widgets/custom_form_field.dart';
 import '../../../../core/utils/app_validation.dart';
 import '../../../../core/utils/text_style.dart';
