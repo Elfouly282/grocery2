@@ -1,4 +1,3 @@
-
 class MealsModel {
   MealsModel({
     required this.mealId,
@@ -16,7 +15,6 @@ class MealsModel {
     required this.isFeatured,
     required this.inStock,
     required this.features,
-
   });
 
   final String mealId;
@@ -24,21 +22,16 @@ class MealsModel {
   final String mealSlug;
   final String mealDescription;
   final String? mealImage;
-  final String offerTitle;
-  final int price;
-  final int discountPrice;
-  final int finalPrice;
-  final String rating;
+  final String? offerTitle;
+  final double price;
+  final double? discountPrice;
+  final double finalPrice;
+  final double rating;
   final int ratingCount;
   final bool hasOffer;
   final bool isFeatured;
   final bool inStock;
   final String features;
-
-  @override
-  String toString() {
-    return 'MealsModel{mealId: $mealId, mealTitle: $mealTitle, mealSlug: $mealSlug, mealDescription: $mealDescription, mealImage: $mealImage, offerTitle: $offerTitle, price: $price, discountPrice: $discountPrice, finalPrice: $finalPrice, rating: $rating, ratingCount: $ratingCount, hasOffer: $hasOffer, isFeatured: $isFeatured, inStock: $inStock, features: $features}';
-  }
 
   Map<String, dynamic> toJson() {
     return {
@@ -60,31 +53,23 @@ class MealsModel {
     };
   }
 
-  factory MealsModel.fromJson(Map<String, dynamic> map) {
+  factory MealsModel.fromJson(Map<String, dynamic> json) {
     return MealsModel(
-      mealId: map['id']?.toString() ?? '',
-      mealTitle: map['title']?.toString() ?? '',
-      mealSlug: map['slug']?.toString() ?? '',
-      mealDescription: map['description']?.toString() ?? '',
-      mealImage: map['image_url']?.toString(),           // nullable — no fallback
-      offerTitle: map['offer_title']?.toString() ?? '',
-      price: _parseInt(map['price']),
-      discountPrice: _parseInt(map['discount_price']),
-      finalPrice: _parseInt(map['final_price']),
-      rating: map['rating']?.toString() ?? '0',
-      ratingCount: _parseInt(map['rating_count']),
-      hasOffer: map['has_offer'] == true,
-      isFeatured: map['is_featured'] == true,
-      inStock: map['in_stock'] == true,
-      features: map['features']?.toString() ?? '',
+      mealId: json['id'].toString() ,
+      mealTitle: json['title'] as String,
+      mealSlug: json['slug'] as String,
+      mealDescription: json['description'] as String,
+      mealImage: json['image_url'] as String,
+      offerTitle:( json['offer_title'] as String?),
+      price: (json['price'] as num).toDouble(),
+      discountPrice: (json['discount_price'] as double?) ,
+      finalPrice: (json['final_price'] as num).toDouble(),
+      rating: (json['rating'] as num).toDouble(),
+      ratingCount: json['rating_count'] as int,
+      hasOffer: json['has_offer'] as bool,
+      isFeatured: json['is_featured'] as bool,
+      inStock: json['in_stock'] as bool,
+      features: json['features']?.toString() ?? '',
     );
-  }
-
-// Helper: safely parse int from int, double, or String
-  static int _parseInt(dynamic value) {
-    if (value == null) return 0;
-    if (value is int) return value;
-    if (value is double) return value.toInt();
-    return int.tryParse(value.toString()) ?? 0;
   }
 }

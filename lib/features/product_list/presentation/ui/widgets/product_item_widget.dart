@@ -87,7 +87,7 @@ class ProductItemWidget extends StatelessWidget {
                     ...List.generate(
                       5,
                       (index) => Icon(
-                        index < (double.tryParse(meal.rating) ?? 0.0).floor()? Icons.star : Icons.star_border,
+                        index < (meal.rating ).toDouble()? Icons.star : Icons.star_border,
                         color: Colors.orange,
                         size: AppSizes.sp14,
                       ),
@@ -108,7 +108,7 @@ class ProductItemWidget extends StatelessWidget {
                         color: const Color(0xFF004466),
                       ),
                     ),
-                    if (meal.hasOffer) ...[
+                    if (meal.hasOffer && meal.discountPrice != null) ...[
                       SizedBox(width: AppSizes.w8),
                       Text(
                         '£${meal.price}',

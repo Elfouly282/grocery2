@@ -24,13 +24,13 @@ class ProductListScreen extends StatelessWidget {
           backgroundColor: AppColor.white,
           elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.blue.shade700, size: 20.w),
+            icon: Icon(Icons.arrow_back_ios, color: AppColor.black, size: AppSizes.w20),
             onPressed: () => Navigator.pop(context),
           ),
           titleSpacing: 0,
           actions: [
             IconButton(
-              icon: Icon(Icons.search, color: Colors.blue.shade700),
+              icon: Icon(Icons.search_sharp, color: AppColor.blueDark, size: AppSizes.r30),
               onPressed: () {},
             ),
             IconButton(
@@ -40,10 +40,7 @@ class ProductListScreen extends StatelessWidget {
           ],
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(1.0),
-            child: Container(
-              color: Colors.blue.shade700,
-              height: 1.0,
-            ),
+            child: Container(color: Colors.grey[300], height: 2.0),
           ),
         ),
         body: BlocBuilder<ProductListCubit, ProductListState>(
@@ -53,7 +50,11 @@ class ProductListScreen extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(
-                        AppSizes.w16, AppSizes.h16, AppSizes.w16, AppSizes.h8),
+                      AppSizes.w16,
+                      AppSizes.h16,
+                      AppSizes.w16,
+                      AppSizes.h8,
+                    ),
                     child: Text(
                       'Sub Categories',
                       style: TextStyle(
@@ -73,8 +74,19 @@ class ProductListScreen extends StatelessWidget {
                 else if (state.mealsRequestStatus == RequestStatusEnum.error &&
                     state.meals.isEmpty)
                   SliverFillRemaining(
+                    child: Center(child: Text(state.errorMessage ?? "An error occurred")),
+                  )
+                else if (state.mealsRequestStatus == RequestStatusEnum.loaded &&
+                    state.meals.isEmpty)
+                  SliverFillRemaining(
                     child: Center(
-                      child:  Text(state.errorMessage ?? "An error occurred"),
+                      child: Text(
+                        "Added Soon",
+                        style: TextStyle(
+                          fontSize: AppSizes.sp20,
+                          color: AppColor.textPrimary,
+                        ),
+                      ),
                     ),
                   )
                 else ...[
@@ -87,12 +99,9 @@ class ProductListScreen extends StatelessWidget {
                         mainAxisSpacing: AppSizes.h16,
                         crossAxisSpacing: AppSizes.w16,
                       ),
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          return ProductItemWidget(meal: state.meals[index]);
-                        },
-                        childCount: state.meals.length,
-                      ),
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        return ProductItemWidget(meal: state.meals[index]);
+                      }, childCount: state.meals.length),
                     ),
                   ),
                   if (state.mealsRequestStatus == RequestStatusEnum.loading)
