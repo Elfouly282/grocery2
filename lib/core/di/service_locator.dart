@@ -1,32 +1,36 @@
 import 'package:get_it/get_it.dart';
 
-// feature imports
-import '../../features/product_details/data/datasources/product_remote_datasource.dart';
-import '../../features/product_details/data/repositories/product_repository_impl.dart';
-import '../../features/product_details/domain/repositories/product_repository.dart';
-import '../../features/product_details/domain/usecases/get_product_details.dart';
-import '../../features/product_details/presentation/cubit/product_details_cubit.dart';
+import '../../features/smart_lists/data/datasources/smart_lists_remote_datasource.dart';
+import '../../features/smart_lists/data/repositories/smart_lists_repository_impl.dart';
+import '../../features/smart_lists/domain/repositories/smart_lists_repository.dart';
+import '../../features/smart_lists/domain/usecases/get_favorites.dart';
+import '../../features/smart_lists/domain/usecases/get_history.dart';
+import '../../features/smart_lists/domain/usecases/get_smart_lists.dart';
+import '../../features/smart_lists/presentation/cubit/favorites_cubit.dart';
+import '../../features/smart_lists/presentation/cubit/history_cubit.dart';
+import '../../features/smart_lists/presentation/cubit/smart_lists_cubit.dart';
 
 final sl = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
-  // DataSource
-  sl.registerLazySingleton<ProductRemoteDataSource>(
-    () => ProductRemoteDataSourceImpl(),
+  // ============= Smart Lists Feature =============
+  // Single Remote DataSource (shared)
+  sl.registerLazySingleton<SmartListsRemoteDataSource>(
+    () => SmartListsRemoteDataSource(),
   );
 
-  // Repository
-  sl.registerLazySingleton<ProductRepository>(
-    () => ProductRepositoryImpl(remoteDataSource: sl()),
+  // Single Repository (shared)
+  sl.registerLazySingleton<SmartListsRepository>(
+    () => SmartListsRepositoryImpl(remoteDataSource: sl()),
   );
 
-  // UseCase
-  sl.registerLazySingleton(
-    () => GetProductDetails(sl()),
-  );
+  // Use Cases (each gets the same repository)
+  sl.registerLazySingleton(() => GetSmartLists(sl()));
+  sl.registerLazySingleton(() => GetFavorites(sl()));
+  sl.registerLazySingleton(() => GetHistory(sl()));
 
-  // Cubit
-  sl.registerFactory(
-    () => ProductDetailsCubit(sl()),
-  );
+  // Individual Cubits (factory - new instance each time)
+  sl.registerFactory(() => SmartListsCubit(getSmartListsUseCase: sl()));
+  sl.registerFactory(() => FavoritesCubit(getFavoritesUseCase: sl()));
+  sl.registerFactory(() => HistoryCubit(getHistoryUseCase: sl()));
 }
