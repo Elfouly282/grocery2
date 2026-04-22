@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../feature/category/data/models/CategoryModel.dart';
+import '../../features/category/data/models/CategoryModel.dart';
 import '../constants/app_color.dart';
 import '../utils/text_style.dart';
 

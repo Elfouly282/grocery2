@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/constants/app_color.dart';
-import '../../../../core/id/get_it.dart';
+import '../../../../core/di/get_it.dart';
 import '../../../../core/shared_widgets/categories_horizontal_list.dart';
 import '../../../../core/shared_widgets/custom_appbar.dart';
 import '../../../../core/utils/text_style.dart';
