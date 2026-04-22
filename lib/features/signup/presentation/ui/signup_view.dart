@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grocery2/feature/signup/data/models/SignupRequest.dart';
 import '../../../../core/constants/app_color.dart';
 import '../../../../core/constants/snakbar.dart';
-import '../../../../core/di/get_it.dart';
+import '../../../../core/id/get_it.dart';
 import '../../../../core/shared_widgets/custom_form_field.dart';
 import '../../../../core/utils/app_validation.dart';
 import '../../../../core/utils/text_style.dart';
+import '../../data/models/SignupRequest.dart';
 import '../cubit/signup_cubit.dart';
 import '../widgets/policies_terms.dart';
 
