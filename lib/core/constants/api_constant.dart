@@ -11,13 +11,13 @@ class ApiConstant {
   static const String getProfile = '/user/profile';
   static const String updateProfile = '/user/profile/update';
   static const String getProducts = '/products';
-  static const String getProductDetails = '/products/:id';
+  static const String getProductDetails = '/products/:di';
   static const String addToCart = '/cart/add';
   static const String removeFromCart = '/cart/remove';
   static const String getCart = '/cart';
   static const String checkout = '/checkout';
   static const String getOrders = '/orders';
-  static const String getOrderDetails = '/orders/:id';
+  static const String getOrderDetails = '/orders/:di';
 
   /// Timeout duration in seconds
   static const int connectTimeout = 30;
