@@ -73,7 +73,7 @@ class _ResetPassState extends State<ResetPass> {
                   obscureText: isObscure,
                   onChanged: (value) {
                     setState(() {
-                      hasEightCharacters = value.length >= 8;
+                      hasEightCharacters = value.length >= 12;
                       hasNumber = value.contains(RegExp(r'[0-9]'));
                     });
                   },
@@ -83,6 +83,24 @@ class _ResetPassState extends State<ResetPass> {
                     isVisible: !isObscure,
                     onToggle: () => setState(() => isObscure = !isObscure),
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a new password';
+                    }
+                    if (value.length < 12) {
+                      return 'Password must be at least 12 characters';
+                    }
+                    if (!RegExp(r'[0-9]').hasMatch(value)) {
+                      return 'Password must contain at least one number';
+                    }
+                    if (value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+                      return 'Password cannot start with a number or special character';
+                    }
+                    if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                      return 'Add uppercase letter';
+                    }
+                    return null;
+                  },
                 ),
 
                 const SizedBox(height: 20),
@@ -107,7 +125,7 @@ class _ResetPassState extends State<ResetPass> {
                 const SizedBox(height: 20),
 
                 buildValidationHint(
-                  "Must be at least 8 characters",
+                  "Must be at least 12 characters",
                   hasEightCharacters,
                 ),
                 const SizedBox(height: 10),
@@ -129,13 +147,13 @@ class _ResetPassState extends State<ResetPass> {
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
                         try {
-                           final Response response = await DioHelper.post(
+                          final Response response = await DioHelper.post(
                             path: ApiConstant.resetPassword,
                             data: {
                               'identifier': widget.receiver.trim(),
                               'otp': widget.otp.trim(),
                               'password': newPasswordController.text.trim(),
-                               'password_confirmation': confirmPasswordController
+                              'password_confirmation': confirmPasswordController
                                   .text
                                   .trim(),
                             },
@@ -146,11 +164,10 @@ class _ResetPassState extends State<ResetPass> {
                               context,
                               "Password reset successfully",
                             );
-                           showSuccessBottomSheet(context);
+                            showSuccessBottomSheet(context);
                           }
-                        }     
-                        catch (e) {
-                           print("Reset Error: $e");
+                        } catch (e) {
+                          print("Reset Error: $e");
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
