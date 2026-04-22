@@ -47,29 +47,9 @@ class LoggingInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    log('╔════════════════════════════════════════════════════════════');
-    log('║ ❌ ERROR');
-    log('║ ────────────────────────────────────────────────────────────');
-    log('║ Method: ${err.requestOptions.method}');
-    log('║ URL: ${err.requestOptions.uri}');
-    log('║ Error Type: ${err.type}');
-    log('║ Error Message: ${err.message}');
-    log('║ Status Code: ${err.response?.statusCode}');
-
-    if (err.requestOptions.queryParameters.isNotEmpty) {
-      log('║ Query Parameters: ${err.requestOptions.queryParameters}');
-    }
-
-    if (err.requestOptions.data != null) {
-      log('║ Body: ${err.requestOptions.data}');
-    }
-
-    if (err.response?.data != null) {
-      log('║ Error Data: ${err.response?.data}');
-    }
-
-    log('╚════════════════════════════════════════════════════════════');
-
+    print('❌ ERROR DETECTED'); // استخدم print بدل log
+    print('Status Code: ${err.response?.statusCode}');
+    print('Error Data: ${err.response?.data}'); // دي اللي هتحل اللغز
     handler.next(err);
   }
 }
