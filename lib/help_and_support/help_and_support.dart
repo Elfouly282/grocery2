@@ -65,7 +65,6 @@ class HelpAndSupport extends StatelessWidget {
                 ),
               ),
               Divider(),
-
               ListTile(
                 title: const Text("About Grocery Plus"),
                 trailing: IconButton(

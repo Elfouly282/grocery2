@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grocery2/add_new_list/add_new_list.dart';
 import 'package:grocery2/core/constants/dio_helper.dart';
 import 'package:grocery2/help_and_support/help_and_support.dart';
+import 'package:grocery2/help_and_support/notifications.dart';
 
 void main() {
   DioHelper.init(baseUrl: "https://grocery.newcinderella.online");
@@ -117,6 +118,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
               child: const Text("Go to help and support page"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Notifications()),
+                );
+              },
+              child: const Text("Go to notifications page"),
             ),
           ],
         ),
