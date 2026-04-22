@@ -59,7 +59,7 @@ class _SignupViewState extends State<SignupView> {
             }
           },
           child: Scaffold(
-            backgroundColor: AppColor.primaryLight,
+            backgroundColor: AppColor.white,
             body: Stack(
               children: [
                 SingleChildScrollView(
@@ -78,7 +78,7 @@ class _SignupViewState extends State<SignupView> {
                             children: [
                               SizedBox(height: 24.h),
                               Image.asset(
-                                'assets/images/Group 25.png',
+                                'assets/images/grocery.png',
                                 height: 44.h,
                                 width: 201.w,
                               ),
@@ -209,7 +209,10 @@ class _SignupViewState extends State<SignupView> {
                                     style: AppTextStyle.bodyMedium,
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+
+                                      Navigator.pop(context);
+                                    },
                                     child: Text(
                                       'Login',
                                       style: AppTextStyle.bodyMedium.copyWith(

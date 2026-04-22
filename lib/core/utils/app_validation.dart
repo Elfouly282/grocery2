@@ -1,8 +1,8 @@
 class AppValidators {
-
-
-  static String? required(String? value,
-      {String message = 'This field is required'}) {
+  static String? required(
+    String? value, {
+    String message = 'This field is required',
+  }) {
     if (value == null || value.trim().isEmpty) {
       return message;
     }
@@ -14,9 +14,7 @@ class AppValidators {
       return 'Email is required';
     }
 
-    final emailRegex = RegExp(
-      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-    );
+    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
     if (!emailRegex.hasMatch(value.trim())) {
       return 'Enter valid email';
@@ -25,6 +23,23 @@ class AppValidators {
     return null;
   }
 
+  static String? emailOrPhone(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Field is required';
+    }
+
+    final input = value.trim().replaceAll(' ', '').replaceAll('-', '');
+
+    final emailRegex = RegExp(r'^[\w\.\-]+@([\w\-]+\.)+[a-zA-Z]{2,}$');
+
+    final phoneRegex = RegExp(r'^(\+20|0)?1[0125][0-9]{8}$');
+
+    if (emailRegex.hasMatch(input)) return null;
+
+    if (phoneRegex.hasMatch(input)) return null;
+
+    return 'Enter valid email or phone';
+  }
 
   static String? username(String? value) {
     if (value == null || value.isEmpty) {
@@ -41,16 +56,13 @@ class AppValidators {
   }
 
   static String? phone(String? value) {
-
     if (value == null || value.trim().isEmpty) {
       return 'Phone is required';
     }
     if (value.length != 11) {
       return 'Phone number must be 11 digits';
     }
-    final phoneRegex = RegExp(
-      r'^(\+20|0)?1[0-5][0-9]{8}$',
-    );
+    final phoneRegex = RegExp(r'^(\+20|0)?1[0-5][0-9]{8}$');
 
     if (!phoneRegex.hasMatch(value.trim())) {
       return 'Enter valid phone number';
@@ -58,8 +70,6 @@ class AppValidators {
 
     return null;
   }
-
-
 
   static String? password(String? value) {
     if (value == null || value.isEmpty) {
@@ -81,7 +91,6 @@ class AppValidators {
     return null;
   }
 
-
   static String? confirmPassword(String? value, String originalPassword) {
     if (value == null || value.isEmpty) {
       return 'Confirm your password';
@@ -92,13 +101,10 @@ class AppValidators {
     return null;
   }
 
-
   static String? minLength(String? value, int min) {
     if (value == null || value.length < min) {
       return 'Must be at least $min characters';
     }
     return null;
   }
-
-
 }

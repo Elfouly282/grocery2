@@ -48,7 +48,11 @@
 		0F17B9FE65E86606A114B780 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 =======
 		0DB59D39AFA8B9FF2844B884 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		18FCA44AD5258D27DE309242 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,7 +67,11 @@
 =======
 		3E94919A7E1680853CC296B0 /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		66109A37AC7FD02C89C1855F /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76D59ACB71BABE13464E1AAD /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,7 +107,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF235005DFB41DF71A12B4A /* Pods_RunnerTests.framework in Frameworks */,
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +123,11 @@
 				DEDF82CF5B0FE5CBC485BB39 /* Pods_Runner.framework in Frameworks */,
 =======
 				261AD041B9733538E37A645C /* Pods_Runner.framework in Frameworks */,
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +146,11 @@
 			children = (
 				18FCA44AD5258D27DE309242 /* Pods_Runner.framework */,
 				66109A37AC7FD02C89C1855F /* Pods_RunnerTests.framework */,
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,7 +201,11 @@
 =======
 				33F39B2577308B32F204D61F /* Pods */,
 				198B3023C844031058A8FD93 /* Frameworks */,
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			);
 			sourceTree = "<group>";
 		};
@@ -240,7 +264,11 @@
 				331C807D294A63A400263BE5 /* Sources */,
 				331C807F294A63A400263BE5 /* Resources */,
 				602F1AC928EC11501D40EA34 /* Frameworks */,
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			);
 			buildRules = (
 			);
@@ -260,7 +288,11 @@
 				40FB52265A8B752EF2A0BACA /* [CP] Check Pods Manifest.lock */,
 =======
 				12B1AEA9E0E45F6E6C1974C0 /* [CP] Check Pods Manifest.lock */,
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
@@ -271,7 +303,11 @@
 				AFBBACA4AF1677078F168338 /* [CP] Embed Pods Frameworks */,
 =======
 				6EB8734434E98C85FFE9C1EE /* [CP] Embed Pods Frameworks */,
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			);
 			buildRules = (
 			);
@@ -347,7 +383,11 @@
 		14474D89E3AC0FD5F4F87A64 /* [CP] Check Pods Manifest.lock */ = {
 =======
 		12B1AEA9E0E45F6E6C1974C0 /* [CP] Check Pods Manifest.lock */ = {
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -366,7 +406,11 @@
 				"$(DERIVED_FILE_DIR)/Pods-RunnerTests-checkManifestLockResult.txt",
 =======
 				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -393,7 +437,11 @@
 		40FB52265A8B752EF2A0BACA /* [CP] Check Pods Manifest.lock */ = {
 =======
 		3B59D459C02F7ED03B4D5DBF /* [CP] Check Pods Manifest.lock */ = {
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -412,7 +460,11 @@
 				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
 =======
 				"$(DERIVED_FILE_DIR)/Pods-RunnerTests-checkManifestLockResult.txt",
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -438,7 +490,11 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -600,7 +656,11 @@
 			baseConfigurationReference = 37889780248F6D4CCDD4A989 /* Pods-RunnerTests.debug.xcconfig */;
 =======
 			baseConfigurationReference = 3E94919A7E1680853CC296B0 /* Pods-RunnerTests.debug.xcconfig */;
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -622,7 +682,11 @@
 			baseConfigurationReference = 76D59ACB71BABE13464E1AAD /* Pods-RunnerTests.release.xcconfig */;
 =======
 			baseConfigurationReference = C0A63A5D15E7B5DA09415416 /* Pods-RunnerTests.release.xcconfig */;
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -642,7 +706,11 @@
 			baseConfigurationReference = FBC2C4BE0040F8415E9CD9D3 /* Pods-RunnerTests.profile.xcconfig */;
 =======
 			baseConfigurationReference = DD3D0CD84E4189553C06B09B /* Pods-RunnerTests.profile.xcconfig */;
+<<<<<<< HEAD
 >>>>>>> signup
+=======
+>>>>>>> 66c0bfff870977fbf9e2a6d2635dce05eb18fed6
+>>>>>>> feature/login-page
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

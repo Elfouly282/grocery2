@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery2/features/login/presentation/ui/login_screen.dart';
 import 'package:grocery2/features/on_boarding/presentation/cubit/cubit/on_boarding_cubit_cubit.dart';
 
 class FirstBoard extends StatelessWidget {
@@ -39,11 +40,7 @@ class FirstBoard extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {
-                        _pageController.animateToPage(
-                          data.length - 1,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
+                        Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
                       },
                       child: const Text(
                         'Skip',

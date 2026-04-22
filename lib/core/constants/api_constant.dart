@@ -3,11 +3,9 @@ class ApiConstant {
   static const String baseUrl = 'https://grocery.newcinderella.online';
 
   /// API endpoints
-  static const String login = '/auth/login';
-  static const String signup = '/api/auth/register';
-  static const String subcategories = '/api/categories';
-  static String detailsOfSubcategories(int id) =>
-      '/api/categories/$id/meals';
+  static const String login = '/api/auth/login';
+  static const String signup = '/auth/signup';
+  static const String logout = '/auth/logout';
   static const String getProfile = '/user/profile';
   static const String updateProfile = '/user/profile/update';
   static const String getProducts = '/products';

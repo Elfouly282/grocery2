@@ -22,6 +22,10 @@ class DioHelper {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
+        validateStatus: (status) {
+          // Accept all status codes and handle them in the app
+          return status != null && status >= 100 && status < 600;
+        },
       ),
     );
 
