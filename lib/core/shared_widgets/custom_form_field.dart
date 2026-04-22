@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 import '../constants/app_color.dart';
 import '../utils/text_style.dart';
 
@@ -25,6 +25,8 @@ class CustomTextFormField extends StatefulWidget {
 
   final List<String>? autofillHints;
 
+  final List<TextInputFormatter>? inputFormatters;
+
   const CustomTextFormField({
     super.key,
     required this.controller,
@@ -40,20 +42,19 @@ class CustomTextFormField extends StatefulWidget {
     this.errorText,
     this.onChanged,
     this.autofillHints,
+    this.inputFormatters,
   });
-
   @override
   State<CustomTextFormField> createState() =>
       _CustomTextFormFieldState();
 }
-
 class _CustomTextFormFieldState
     extends State<CustomTextFormField> {
   bool isObscure = true;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: widget.inputFormatters,
       cursorHeight: 15,
       cursorColor: AppColor.primaryColor,
       autofillHints: widget.autofillHints,
@@ -67,12 +68,9 @@ class _CustomTextFormFieldState
         hintStyle: AppTextStyle.bodyMedium.copyWith(
           color: AppColor.grey,
         ),
-
         errorText: widget.errorText,
-
         prefixIcon: widget.prefixIcon,
         prefixText: widget.prefixText,
-
         suffixIcon: widget.isPassword
             ? IconButton(
           icon: Icon(
@@ -87,7 +85,6 @@ class _CustomTextFormFieldState
           },
         )
             : widget.suffixIcon,
-
         border: OutlineInputBorder(
           borderRadius:
           BorderRadius.circular(widget.borderRadius),

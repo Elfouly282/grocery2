@@ -41,10 +41,13 @@ class AppValidators {
   }
 
   static String? phone(String? value) {
+
     if (value == null || value.trim().isEmpty) {
       return 'Phone is required';
     }
-
+    if (value.length != 11) {
+      return 'Phone number must be 11 digits';
+    }
     final phoneRegex = RegExp(
       r'^(\+20|0)?1[0-5][0-9]{8}$',
     );

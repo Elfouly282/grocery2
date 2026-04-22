@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_intl_phone_field/flutter_intl_phone_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery2/feature/signup/data/models/SignupRequest.dart';
@@ -107,6 +106,11 @@ class _SignupViewState extends State<SignupView> {
                               SizedBox(height: 8.h),
                               CustomTextFormField(
                                 controller: _phoneController,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  LengthLimitingTextInputFormatter(11),
+
+                                ],
                                 keyboardType: TextInputType.phone,
                                 validator: AppValidators.phone,
                                 hintText: 'Phone Number',
