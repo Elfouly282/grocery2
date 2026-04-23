@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:grocery2/core/constants/preference_manager.dart';
+import 'package:grocery2/features/navigation/Navigator.dart';
 import 'package:grocery2/features/on_boarding/presentation/UI/first_board.dart';
+
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -32,20 +35,25 @@ class _SplashViewState extends State<SplashView>
       ),
     );
 
-    _appleScale = TweenSequence([
-      TweenSequenceItem(
-        tween: Tween(begin: 0.5, end: 1.3)
-            .chain(CurveTween(curve: Curves.easeOut)),
-        weight: 50,
-      ),
-      TweenSequenceItem(
-        tween: Tween(begin: 1.3, end: 1.0)
-            .chain(CurveTween(curve: Curves.elasticOut)),
-        weight: 50,
-      ),
-    ]).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.7)),
-    );
+    _appleScale =
+        TweenSequence([
+          TweenSequenceItem(
+            tween: Tween(
+              begin: 0.5,
+              end: 1.3,
+            ).chain(CurveTween(curve: Curves.easeOut)),
+            weight: 50,
+          ),
+          TweenSequenceItem(
+            tween: Tween(
+              begin: 1.3,
+              end: 1.0,
+            ).chain(CurveTween(curve: Curves.elasticOut)),
+            weight: 50,
+          ),
+        ]).animate(
+          CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.7)),
+        );
 
     _shadowOpacity = Tween<double>(begin: 0.4, end: 0.0).animate(
       CurvedAnimation(
@@ -65,12 +73,29 @@ class _SplashViewState extends State<SplashView>
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => FirstBoard()),
-        );
+        _navigateToNextScreen();
       }
     });
+  }
+
+  // Check if user is logged in and navigate accordingly
+  void _navigateToNextScreen() {
+    final isLoggedIn = PreferenceManager().getBool('is_logged_in') ?? false;
+    final hasToken = PreferenceManager().getString('token') != null;
+
+    if (isLoggedIn && hasToken) {
+      // User is already logged in, go to Home
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => Navigation()),
+      );
+    } else {
+      // User is not logged in, go to onboarding
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => FirstBoard()),
+      );
+    }
   }
 
   @override
@@ -106,10 +131,7 @@ class _SplashViewState extends State<SplashView>
                       alignment: Alignment.center,
                       clipBehavior: Clip.none,
                       children: [
-                        Image.asset(
-                          'assets/images/apple.png',
-                          width: 130,
-                        ),
+                        Image.asset('assets/images/apple.png', width: 130),
                         Positioned(
                           right: -12,
                           top: 18,

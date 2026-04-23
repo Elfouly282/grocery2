@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery2/features/Forg_pass/presentation/UI/forg_pass.dart';
+import 'package:grocery2/features/navigation/Navigator.dart';
 import 'package:grocery2/features/login/presentation/cubit/login_cubit.dart';
 import 'package:grocery2/features/login/presentation/cubit/login_state.dart';
 import 'package:grocery2/features/signup/presentation/ui/signup_view.dart';
@@ -51,7 +52,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
               if (state is AuthSuccessState) {
                 snackBar.successBar(context, "Welcome ${state.user.username}");
-                // Navigator.pushReplacementNamed(context, '/home');
+                // Navigate to Home after successful login
+                Future.delayed(const Duration(milliseconds: 500), () {
+                  if (mounted) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => Navigation()),
+                    );
+                  }
+                });
               } else if (state is AuthErrorState) {
                 snackBar.errorBar(context, state.message);
               }
@@ -159,7 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         alignment: Alignment.centerRight,
                                         child: TextButton(
                                           onPressed: () {
-                                            Navigator .push(
+                                            Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>

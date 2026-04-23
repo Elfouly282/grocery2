@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
 import 'package:grocery2/features/login/data/repo/repo.dart';
 import '../../../../core/constants/dio_helper.dart';
 import '../../../../core/constants/preference_manager.dart';
@@ -38,6 +38,14 @@ class AuthRepoImpl implements AuthRepo {
 
         if (token != null) {
           await preferenceManager.setString('token', token);
+          // Save user data as JSON for persistence
+          await preferenceManager.setString('user_data', jsonEncode({
+            'id': userData.id,
+            'username': userData.username,
+            'email': userData.email,
+            'phone': userData.phone,
+          }));
+          await preferenceManager.setBool('is_logged_in', true);
         }
 
         _currentUser = userData;
@@ -64,6 +72,35 @@ class AuthRepoImpl implements AuthRepo {
       },
     );
    }
+
+  // Check if user is already logged in
+  bool isLoggedIn() {
+    final isLogged = preferenceManager.getBool('is_logged_in') ?? false;
+    return isLogged && preferenceManager.getString('token') != null;
+  }
+
+  // Get stored user data
+  UserModel? getStoredUser() {
+    try {
+      final userJsonString = preferenceManager.getString('user_data');
+      if (userJsonString != null) {
+        final userJson = jsonDecode(userJsonString);
+        _currentUser = UserModel.fromJson(userJson);
+        return _currentUser;
+      }
+    } catch (e) {
+      print('Error restoring user: $e');
+    }
+    return null;
+  }
+
+  // Logout function
+  Future<void> logout() async {
+    await preferenceManager.remove('token');
+    await preferenceManager.remove('user_data');
+    await preferenceManager.setBool('is_logged_in', false);
+    _currentUser = null;
+  }
 
   UserModel? get currentUser => _currentUser;
 }

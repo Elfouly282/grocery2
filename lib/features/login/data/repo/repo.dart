@@ -1,5 +1,4 @@
 
-
 import '../logic/models/model.dart';
 
 abstract class AuthRepo {
@@ -7,4 +6,10 @@ abstract class AuthRepo {
     required String email,
     required String password,
   });
+  
+  bool isLoggedIn();
+  
+  UserModel? getStoredUser();
+  
+  Future<void> logout();
 }

@@ -4,6 +4,7 @@ class ApiConstant {
 
   /// API endpoints
   static const String login = '/auth/login';
+  static const String todaysdeals ='/meals/today';
   static const String signup = '/auth/signup';
   static const String logout = '/auth/logout';
   static const String getProfile = '/user/profile';
