@@ -25,7 +25,7 @@ class SmartListsRepositoryImpl implements SmartListsRepository {
 
   @override
   Future<List<HistoryItemEntity>> getHistory() async {
-    // TODO: Implement logic
-    return [];
+    final models = await remoteDataSource.getHistory();
+    return models.map((e) => e.toEntity()).toList();
   }
 }
