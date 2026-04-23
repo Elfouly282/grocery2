@@ -8,7 +8,7 @@ class ApiConstant {
   static const String subcategories = '/api/categories';
   static String detailsOfSubcategories(int id) =>
       '/api/categories/$id/meals';
-  static const String getProfile = '/user/profile';
+  static const String todayDeals = '/api/meals/today';
   static const String updateProfile = '/user/profile/update';
   static const String getProducts = '/products';
   static const String getProductDetails = '/products/:di';

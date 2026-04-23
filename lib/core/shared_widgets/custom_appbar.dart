@@ -18,7 +18,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: AppColor.white,
       elevation: 0,
       scrolledUnderElevation: 0,
-      leading: Image.asset('assets/icons/back_arrow.png'),
+
+      leading: GestureDetector(
+        onTap: () => Navigator.pop(context),
+          child: Image.asset('assets/icons/back_arrow.png')),
       title: Visibility(
         visible: isVisible,
         child: Text(title),

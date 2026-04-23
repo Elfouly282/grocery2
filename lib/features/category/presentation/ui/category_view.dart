@@ -2,64 +2,92 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+
 import '../../../../core/constants/app_color.dart';
 import '../../../../core/di/get_it.dart';
 import '../../../../core/shared_widgets/categories_horizontal_list.dart';
 import '../../../../core/shared_widgets/custom_appbar.dart';
 import '../../../../core/utils/text_style.dart';
+
 import '../../data/logic/repo/category_repo_impl.dart';
+import '../../data/models/CategoryModel.dart';
+import '../../data/models/categories_meals/category_meals_model.dart';
+
 import '../cubit/category_cubit.dart';
 import '../widgets/sub_category_vertical_list.dart';
 import '../widgets/details_dummy_data.dart';
 import '../widgets/dummy_data.dart';
 
 class CategoryView extends StatelessWidget {
-  const CategoryView({super.key});
+  final int initialIndex;
+
+  const CategoryView({
+    super.key,
+    required this.initialIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => CategoryCubit(getIt<CategoryRepoImpl>())
-        ..getCategory(),
-      child: Scaffold(
-        backgroundColor: AppColor.white,
-        appBar: CustomAppBar(),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: BlocBuilder<CategoryCubit, CategoryState>(
-            builder: (context, state) {
+        ..getCategoryWithIndex(initialIndex),
+      child: const _CategoryBody(),
+    );
+  }
+}
 
-              final isCategoriesLoading = state is CategoryLoading;
+class _CategoryBody extends StatelessWidget {
+  const _CategoryBody();
 
-              final isDetailsLoading = state is CategorySuccess
-                  ? state.isDetailsLoading
-                  : false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColor.white,
+      appBar: const CustomAppBar(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: BlocBuilder<CategoryCubit, CategoryState>(
+          builder: (context, state) {
+            final isCategoriesLoading = state is CategoryLoading;
 
-              final categories = state is CategorySuccess
-                  ? state.categories.data
-                  : DummyData.categories;
+            final isDetailsLoading = state is CategorySuccess
+                ? state.isDetailsLoading
+                : false;
 
-              final selectedIndex = state is CategorySuccess
-                  ? state.selectedIndex
-                  :0;
+            final List<CategoryModel> categories =
+            state is CategorySuccess
+                ? state.categories.data
+                : <CategoryModel>[];
 
-              final details = state is CategorySuccess
-                  ? state.details?.data.meals ?? []
-                  : [];
-              return SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 16.h),
-                    Text(
-                      'Categories',
-                      style: AppTextStyle.headlineMedium,
-                    ),
-                    SizedBox(height: 8.h),
-                    Skeletonizer(
-                      enabled: isCategoriesLoading,
+            final selectedIndex =
+            state is CategorySuccess ? state.selectedIndex : 0;
+
+            final List<Meal> details =
+            state is CategorySuccess
+                ? state.details?.data.meals ?? <Meal>[]
+                : <Meal>[];
+
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 16.h),
+
+                  Text(
+                    'Categories',
+                    style: AppTextStyle.headlineMedium,
+                  ),
+
+                  SizedBox(height: 8.h),
+
+                  Skeletonizer(
+                    enabled: isCategoriesLoading && categories.isEmpty,
+                    child: SizedBox(
+                      height: 120.h,
                       child: SubCategoriesHorizontalList(
-                        categories: categories,
+                        categories: isCategoriesLoading && categories.isEmpty
+                            ? DummyData.categories
+                            : categories,
                         selectedIndex: selectedIndex,
                         onTap: (index) {
                           context
@@ -68,48 +96,33 @@ class CategoryView extends StatelessWidget {
                         },
                       ),
                     ),
+                  ),
 
-                    SizedBox(height: 12.h),
-                    if (isDetailsLoading)
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: 4,
-                        itemBuilder: (_, __) =>
-                        const CategoriesVerticalListSkeleton(),
-                        separatorBuilder: (_, __) =>
-                            SizedBox(height: 10.h),
-                      )
-                    else if (details.isEmpty)
-                      Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20.h),
-                          child: Center(
-                            child: Text(
-                              "No items found",
-                              style: AppTextStyle.titleMedium,
-                            ),
-                          ),
-                        ),
-                      )
-                    else
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: details.length,
-                        separatorBuilder: (_, __) =>
-                            SizedBox(height: 10.h),
-                        itemBuilder: (context, index) {
-                          return CategoriesVerticalList(
-                            meal: details[index],
-                          );
-                        },
-                      ),
-                  ],
-                ),
-              );
-            },
-          ),
+                  SizedBox(height: 12.h),
+
+                  Skeletonizer(
+                    enabled: isDetailsLoading,
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: isDetailsLoading ? 4 : details.length,
+                      itemBuilder: (context, index) {
+                        if (isDetailsLoading) {
+                          return const CategoriesVerticalListSkeleton();
+                        }
+
+                        return CategoriesVerticalList(
+                          meal: details[index],
+                        );
+                      },
+                      separatorBuilder: (_, __) =>
+                          SizedBox(height: 10.h),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

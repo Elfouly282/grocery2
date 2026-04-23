@@ -6,9 +6,9 @@ class DummyData {
   List.generate(
     6,
         (index) => CategoryModel(
+          id: index,
          name: 'Loading...',
           imageUrl: '',
-          id: 1,
           slug: '',
           description: '',
           mealsCount: 1,

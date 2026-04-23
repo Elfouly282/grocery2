@@ -12,7 +12,7 @@ class CategoryCubit extends Cubit<CategoryState> {
 
   CategoryCubit(this.catigoryRepo) : super(CategoryInitial());
 
-  Future<void> getCategory() async {
+  Future<void> getCategoryWithIndex(int index) async {
     emit(CategoryLoading());
 
     try {
@@ -20,11 +20,12 @@ class CategoryCubit extends Cubit<CategoryState> {
 
       emit(CategorySuccess(
         categories: categories,
-        selectedIndex: 0,
+        selectedIndex: index,
       ));
 
-      getDetails(categories.data.first.id);
+      final id = categories.data[index].id;
 
+      getDetails(id);
     } catch (e) {
       emit(CategoryError(message: _handleError(e)));
     }

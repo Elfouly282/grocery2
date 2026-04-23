@@ -33,7 +33,6 @@ class CategoriesVerticalListSkeleton extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /// Title
                   Container(
                     width: 120.w,
                     height: 14.h,

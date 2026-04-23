@@ -29,7 +29,7 @@ class CategoryMeals {
 
   factory CategoryMeals.fromJson(Map<String, dynamic> json) {
     return CategoryMeals(
-      id: json['di'],
+      id: json['id'],
       name: json['name'],
       slug: json['slug'],
       description: json['description'],
@@ -61,7 +61,7 @@ class Category {
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
-      id: json['di'],
+      id: json['id'],
       name: json['name'],
       slug: json['slug'],
     );
@@ -96,7 +96,7 @@ class Meal {
 
   factory Meal.fromJson(Map<String, dynamic> json) {
     return Meal(
-      id: json['di'] ?? 0,
+      id: json['id'] ?? 0,
       title: json['title'] ?? '',
       slug: json['slug'] ?? '',
       imageUrl: json['image_url'] ?? '',
