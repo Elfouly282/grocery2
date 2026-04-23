@@ -4,8 +4,8 @@ import 'package:grocery2/core/constants/api_constant.dart';
 import 'package:grocery2/core/constants/dio_helper.dart';
 import 'package:grocery2/core/constants/preference_manager.dart';
 import 'package:grocery2/core/di/get_it.dart';
-import 'package:grocery2/features/splash/UI/Splach.dart';
-
+ import 'package:grocery2/features/splash/UI/Splach.dart';
+ 
 void main() async{
  WidgetsFlutterBinding.ensureInitialized();
   await PreferenceManager().init();
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Grocery',
         debugShowCheckedModeBanner: false,
-        home: const SplashView(),
+        home:   SplashView(),
       ),
     );
   }

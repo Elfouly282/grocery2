@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery2/features/Forg_pass/presentation/UI/forg_pass.dart';
+import 'package:grocery2/features/Naviagation/Navigator.dart';
 import 'package:grocery2/features/login/presentation/cubit/login_cubit.dart';
 import 'package:grocery2/features/login/presentation/cubit/login_state.dart';
 import 'package:grocery2/features/signup/presentation/ui/signup_view.dart';
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
       create: (context) => AuthCubit(
         AuthRepoImpl(
           preferenceManager: PreferenceManager(),
-        ), // تمرير الـ Repo للـ Cubit
+        ),  
       ),
       child: GestureDetector(
         onTap: FocusScope.of(context).unfocus,
@@ -51,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               if (state is AuthSuccessState) {
                 snackBar.successBar(context, "Welcome ${state.user.username}");
-                // Navigator.pushReplacementNamed(context, '/home');
+                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return Navigation();}));
               } else if (state is AuthErrorState) {
                 snackBar.errorBar(context, state.message);
               }
