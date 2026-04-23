@@ -9,42 +9,36 @@ class AppButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
-
     this.isLoading = false,
     this.isDisabled = false,
-
     this.width = double.infinity,
     this.height = 50,
-
     this.backgroundColor = AppColors.primaryColor,
+    this.borderColor = AppColors.primaryColor,
     this.textColor = AppColors.white,
     this.borderRadius = 12,
     this.elevation = 0,
-
     this.icon,
     this.padding = const EdgeInsets.symmetric(horizontal: 16),
-
     this.textStyle,
   });
 
   final String text;
   final VoidCallback? onPressed;
 
-  // states
   final bool isLoading;
   final bool isDisabled;
 
-  // size
   final double width;
   final double height;
 
-  // style
   final Color backgroundColor;
   final Color textColor;
+  final Color borderColor;
+
   final double borderRadius;
   final double elevation;
 
-  // extras
   final Widget? icon;
   final EdgeInsetsGeometry padding;
   final TextStyle? textStyle;
@@ -58,15 +52,27 @@ class AppButton extends StatelessWidget {
       height: height,
       child: ElevatedButton(
         onPressed: disabled ? null : onPressed,
-        style: ElevatedButton.styleFrom(
-          elevation: elevation,
-          backgroundColor: backgroundColor,
-          foregroundColor: textColor,
-          disabledBackgroundColor: AppColors.grey,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
+        style: ButtonStyle(
+          elevation: WidgetStatePropertyAll(elevation),
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.disabled)) {
+              return AppColors.grey;
+            }
+            return backgroundColor;
+          }),
+          foregroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.disabled)) {
+              return AppColors.white.withOpacity(0.6);
+            }
+            return textColor;
+          }),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius),
+              side: BorderSide(color: borderColor),
+            ),
           ),
-          padding: padding,
+          padding: WidgetStatePropertyAll(padding),
         ),
         child: _buildChild(),
       ),
@@ -87,7 +93,7 @@ class AppButton extends StatelessWidget {
 
     final textWidget = Text(
       text,
-      style: textStyle ?? AppTextStyles.titleMedium,
+      style: textStyle ?? AppTextStyles.titleMedium.copyWith(color: textColor),
     );
 
     if (icon != null) {

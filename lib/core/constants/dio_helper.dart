@@ -131,4 +131,21 @@ class DioHelper {
       ),
     );
   }
+
+  static Future<Response> postFormData({
+    required String path,
+    required FormData formData,
+    Map<String, dynamic>? query,
+    bool withAuth = false,
+  }) async {
+    return await _dio.post(
+      path,
+      data: formData,
+      queryParameters: query,
+      options: Options(
+        extra: {'withAuth': withAuth},
+        contentType: 'multipart/form-data',
+      ),
+    );
+  }
 }

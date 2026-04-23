@@ -24,7 +24,7 @@ class FavoriteCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(color: AppColors.grey, width: 1.w),
+        border: Border.all(color: AppColors.greyLight, width: 1.w),
         boxShadow: [
           BoxShadow(
             color: AppColors.black.withOpacity(0.05),
@@ -55,7 +55,7 @@ class FavoriteCard extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.all(6.w),
                     decoration: const BoxDecoration(
-                      color: AppColors.greyLight,
+                      color: AppColors.primaryLight,
                       shape: BoxShape.circle,
                     ),
                     child: Icon(

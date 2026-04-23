@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-
 import '../../domain/entities/smart_list_entity.dart';
 
 abstract class SmartListsState extends Equatable {
@@ -20,6 +19,24 @@ class SmartListsLoaded extends SmartListsState {
 
   @override
   List<Object?> get props => [smartLists];
+}
+
+class SmartListDetailsSuccess extends SmartListsState {
+  final SmartListEntity smartList;
+
+  const SmartListDetailsSuccess(this.smartList);
+
+  @override
+  List<Object?> get props => [smartList];
+}
+
+class SmartListActionSuccess extends SmartListsState {
+  final String message;
+
+  const SmartListActionSuccess(this.message);
+
+  @override
+  List<Object?> get props => [message];
 }
 
 class SmartListsError extends SmartListsState {

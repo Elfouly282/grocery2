@@ -6,15 +6,23 @@ import '../../features/product_details/domain/repositories/product_repository.da
 import '../../features/product_details/domain/usecases/get_product_details.dart';
 import '../../features/product_details/presentation/cubit/product_details_cubit.dart';
 import '../../features/smart_lists/data/datasources/favorites_remote_datasource.dart';
-import '../../features/smart_lists/data/datasources/smart_lists_remote_datasource.dart';
+import '../../features/smart_lists/data/datasources/history_remote_datasource.dart';
+import '../../features/smart_lists/data/datasources/smart_list_remote_data_source.dart';
 import '../../features/smart_lists/data/repositories/favorites_repository_impl.dart';
-import '../../features/smart_lists/data/repositories/smart_lists_repository_impl.dart';
+import '../../features/smart_lists/data/repositories/history_repository_impl.dart';
+import '../../features/smart_lists/data/repositories/smart_list_repository_impl.dart';
 import '../../features/smart_lists/domain/repositories/favorites_repository.dart';
-import '../../features/smart_lists/domain/repositories/smart_lists_repository.dart';
+import '../../features/smart_lists/domain/repositories/history_repository.dart';
+import '../../features/smart_lists/domain/repositories/smart_list_repository.dart';
+import '../../features/smart_lists/domain/usecases/delete_smart_list.dart';
 import '../../features/smart_lists/domain/usecases/get_favorites.dart';
+import '../../features/smart_lists/domain/usecases/get_order_history.dart';
+import '../../features/smart_lists/domain/usecases/get_smart_list_details.dart';
 import '../../features/smart_lists/domain/usecases/get_smart_lists.dart';
 import '../../features/smart_lists/domain/usecases/toggle_favorite.dart';
+import '../../features/smart_lists/domain/usecases/update_smart_list.dart';
 import '../../features/smart_lists/presentation/cubit/favorites_cubit.dart';
+import '../../features/smart_lists/presentation/cubit/history_cubit.dart';
 import '../../features/smart_lists/presentation/cubit/smart_lists_cubit.dart';
 
 final sl = GetIt.instance;
@@ -60,21 +68,49 @@ Future<void> setupServiceLocator() async {
         FavoritesCubit(getFavoritesUseCase: sl(), toggleFavoriteUseCase: sl()),
   );
 
-  // ============= Smart Lists Feature =============
-  // Data Source
-  sl.registerLazySingleton<SmartListsRemoteDataSource>(
-    () => SmartListsRemoteDataSource(),
+  // ============= History Feature =============
+
+  // DataSource
+  sl.registerLazySingleton<HistoryRemoteDataSource>(
+    () => HistoryRemoteDataSourceImpl(),
   );
 
   // Repository
-  // SmartListsRepositoryImpl now takes the remote data source in the constructor
-  sl.registerLazySingleton<SmartListsRepository>(
-    () => SmartListsRepositoryImpl(sl()),
+  sl.registerLazySingleton<HistoryRepository>(
+    () => HistoryRepositoryImpl(remoteDataSource: sl()),
   );
 
   // UseCase
-  sl.registerLazySingleton<GetSmartLists>(() => GetSmartLists(sl()));
+  sl.registerLazySingleton(() => GetOrderHistory(sl()));
 
   // Cubit
-  sl.registerFactory<SmartListsCubit>(() => SmartListsCubit(sl()));
+  sl.registerFactory(() => HistoryCubit(getOrderHistoryUseCase: sl()));
+
+  // ============= Smart Lists Feature =============
+
+  // DataSource
+  sl.registerLazySingleton<SmartListRemoteDataSource>(
+    () => SmartListRemoteDataSourceImpl(),
+  );
+
+  // Repository
+  sl.registerLazySingleton<SmartListRepository>(
+    () => SmartListRepositoryImpl(sl()),
+  );
+
+  // UseCase
+  sl.registerLazySingleton(() => GetSmartLists(sl()));
+  sl.registerLazySingleton(() => GetSmartListDetails(sl()));
+  sl.registerLazySingleton(() => UpdateSmartList(sl()));
+  sl.registerLazySingleton(() => DeleteSmartList(sl()));
+
+  // Cubit
+  sl.registerFactory(
+    () => SmartListsCubit(
+      getSmartListsUseCase: sl(),
+      getSmartListDetailsUseCase: sl(),
+      updateSmartListUseCase: sl(),
+      deleteSmartListUseCase: sl(),
+    ),
+  );
 }

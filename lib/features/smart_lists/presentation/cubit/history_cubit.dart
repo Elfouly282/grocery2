@@ -1,20 +1,20 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/usecases/get_history.dart';
+import '../../domain/usecases/get_order_history.dart';
 import 'history_state.dart';
 
 class HistoryCubit extends Cubit<HistoryState> {
-  final GetHistory getHistoryUseCase;
+  final GetOrderHistory getOrderHistoryUseCase;
 
-  HistoryCubit({required this.getHistoryUseCase}) : super(HistoryInitial());
+  HistoryCubit({required this.getOrderHistoryUseCase})
+    : super(HistoryInitial());
 
-  void load() async {
+  Future<void> load() async {
     emit(HistoryLoading());
-    try {
-      final history = await getHistoryUseCase();
-      emit(HistoryLoaded(history));
-    } catch (e) {
-      emit(HistoryError(e.toString()));
-    }
+    final result = await getOrderHistoryUseCase();
+    result.fold(
+      (failure) => emit(HistoryError(failure.message)),
+      (history) => emit(HistoryLoaded(history)),
+    );
   }
 }

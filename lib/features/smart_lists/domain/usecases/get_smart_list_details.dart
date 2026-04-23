@@ -3,12 +3,12 @@ import '../../../../core/errors/failures.dart';
 import '../entities/smart_list_entity.dart';
 import '../repositories/smart_list_repository.dart';
 
-class GetSmartLists {
+class GetSmartListDetails {
   final SmartListRepository repository;
 
-  GetSmartLists(this.repository);
+  GetSmartListDetails(this.repository);
 
-  Future<Either<Failure, List<SmartListEntity>>> call() async {
-    return await repository.getSmartLists();
+  Future<Either<Failure, SmartListEntity>> call(int id) async {
+    return await repository.getSmartListDetails(id);
   }
 }

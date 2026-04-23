@@ -18,10 +18,13 @@ class ApiConstant {
   static const String removeFromCart = '/cart/remove';
   static const String getCart = '/cart';
   static const String checkout = '/checkout';
-  static const String getOrders = '/orders';
+  static const String ordersHistory = '/api/orders';
   static const String getOrderDetails = '/orders/:id';
   static const String getFavorites = '/api/favorites';
   static const String toggleFavorite = '/api/favorites/:id/toggle';
+  static const String getSmartLists = '/api/smart-lists';
+  static const String smartLists = '/api/smart-lists';
+  static const String smartList = '/api/smart-lists/:id';
 
   /// Timeout duration in seconds
   static const int connectTimeout = 30;

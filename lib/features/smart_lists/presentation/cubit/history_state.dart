@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../domain/entities/history_item_entity.dart';
+import '../../../product_details/domain/entities/product_entity.dart';
 
 abstract class HistoryState extends Equatable {
   const HistoryState();
@@ -14,12 +14,12 @@ class HistoryInitial extends HistoryState {}
 class HistoryLoading extends HistoryState {}
 
 class HistoryLoaded extends HistoryState {
-  final List<HistoryItemEntity> history;
+  final List<ProductEntity> products;
 
-  const HistoryLoaded(this.history);
+  const HistoryLoaded(this.products);
 
   @override
-  List<Object?> get props => [history];
+  List<Object?> get props => [products];
 }
 
 class HistoryError extends HistoryState {

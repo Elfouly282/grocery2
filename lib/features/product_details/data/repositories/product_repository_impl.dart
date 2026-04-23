@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
+import '../../../../core/errors/error_handler.dart';
 import '../../../../core/errors/failures.dart';
 import '../../domain/entities/product_entity.dart';
 import '../../domain/repositories/product_repository.dart';
@@ -16,11 +17,9 @@ class ProductRepositoryImpl implements ProductRepository {
       final product = await remoteDataSource.getProductDetails(id);
       return Right(product);
     } on DioException catch (e) {
-      return Left(ServerFailure(
-        e.response?.data['message'] ?? 'Failed to fetch product details',
-      ));
+      return Left(handleDioError(e));
     } catch (e) {
-      return Left(ServerFailure(e.toString()));
+      return Left(UnknownFailure(e.toString()));
     }
   }
 }

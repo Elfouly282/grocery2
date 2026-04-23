@@ -69,4 +69,35 @@ class ProductModel extends ProductEntity {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'slug': slug,
+      'description': description,
+      'image_url': image,
+      'offer_title': offerTitle,
+      'expiry_date': expiryDate.toIso8601String(),
+      'is_expired': isExpired,
+      'price': price,
+      'discount_price': discountPrice,
+      'final_price': finalPrice,
+      'rating': rating,
+      'rating_count': ratingCount,
+      'has_offer': hasOffer,
+      'is_featured': isFeatured,
+      'features': features,
+      'size': size,
+      'brand': brand,
+      'includes': includes,
+      'how_to_use': howToUse,
+      'stock_quantity': stockQuantity,
+      'in_stock': inStock,
+      'sold_count': soldCount,
+      'is_available': isAvailable,
+      'is_favorited': isFavorited,
+      'favorited_at': favoritedAt?.toIso8601String(),
+    };
+  }
 }
