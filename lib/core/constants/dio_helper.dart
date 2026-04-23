@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:grocery2/core/constants/preference_manager.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+ 
 
 import 'auth_interceptor.dart';
 import 'logging_interceptors.dart';
