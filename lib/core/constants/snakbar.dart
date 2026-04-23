@@ -3,7 +3,7 @@ import 'package:grocery2/core/constants/app_color.dart';
 
 
 class CustomSnackBar {
-
+ 
   void errorBar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -31,6 +31,4 @@ class CustomSnackBar {
             content: Text(message))
     );
   }
-
-
 }

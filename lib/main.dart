@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:grocery2/core/constants/api_constant.dart';
+import 'package:grocery2/core/constants/dio_helper.dart';
+import 'package:grocery2/core/constants/preference_manager.dart';
+import 'package:grocery2/core/di/get_it.dart';
 import 'package:grocery2/features/splash/UI/Splach.dart';
- import 'core/constants/api_constant.dart';
-import 'core/constants/dio_helper.dart';
-import 'core/constants/preference_manager.dart';
-import 'core/di/get_it.dart';
+
 void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
+ WidgetsFlutterBinding.ensureInitialized();
   await PreferenceManager().init();
-  DioHelper.init(baseUrl: ApiConstant.baseUrl);
   setupLocator();
+  DioHelper.init(
+    baseUrl: ApiConstant.baseUrl,
+  );
   runApp(const MyApp());
 
 }

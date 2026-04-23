@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:grocery2/features/Forg_pass/presentation/UI/forg_pass.dart';
 import 'package:grocery2/features/login/presentation/cubit/login_cubit.dart';
 import 'package:grocery2/features/login/presentation/cubit/login_state.dart';
 import 'package:grocery2/features/signup/presentation/ui/signup_view.dart';
@@ -157,7 +158,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Align(
                                         alignment: Alignment.centerRight,
                                         child: TextButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator .push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const ForgPass(),
+                                              ),
+                                            );
+                                          },
                                           child: Text(
                                             "Forgot Password?",
                                             style: GoogleFonts.inter(

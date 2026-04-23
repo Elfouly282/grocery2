@@ -1,9 +1,9 @@
 class ApiConstant {
   /// Base URL for API endpoints
-  static const String baseUrl = 'https://grocery.newcinderella.online';
+  static const String baseUrl = 'https://grocery.newcinderella.online/api';
 
   /// API endpoints
-  static const String login = '/api/auth/login';
+  static const String login = '/auth/login';
   static const String signup = '/auth/signup';
   static const String logout = '/auth/logout';
   static const String getProfile = '/user/profile';
@@ -16,6 +16,9 @@ class ApiConstant {
   static const String checkout = '/checkout';
   static const String getOrders = '/orders';
   static const String getOrderDetails = '/orders/:di';
+  static const String sendOtp = '/auth/forgot-password';
+  static const String verifyOtp = '/auth/verify-otp';
+  static const String resetPassword = '/auth/reset-password';
 
   /// Timeout duration in seconds
   static const int connectTimeout = 30;
