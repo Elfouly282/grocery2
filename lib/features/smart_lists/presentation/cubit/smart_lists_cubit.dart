@@ -6,8 +6,7 @@ import 'smart_lists_state.dart';
 class SmartListsCubit extends Cubit<SmartListsState> {
   final GetSmartLists getSmartListsUseCase;
 
-  SmartListsCubit({required this.getSmartListsUseCase})
-    : super(SmartListsInitial());
+  SmartListsCubit(this.getSmartListsUseCase) : super(SmartListsInitial());
 
   void load() async {
     emit(SmartListsLoading());

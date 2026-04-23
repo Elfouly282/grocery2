@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-import '../../domain/entities/favorite_entity.dart';
+import '../../../product_details/domain/entities/product_entity.dart';
 
 abstract class FavoritesState extends Equatable {
   const FavoritesState();
@@ -14,7 +13,7 @@ class FavoritesInitial extends FavoritesState {}
 class FavoritesLoading extends FavoritesState {}
 
 class FavoritesLoaded extends FavoritesState {
-  final List<FavoriteEntity> favorites;
+  final List<ProductEntity> favorites;
 
   const FavoritesLoaded(this.favorites);
 

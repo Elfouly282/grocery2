@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/app_colors.dart';
+import '../../domain/entities/product_entity.dart';
 
 class ProductImage extends StatelessWidget {
+  final ProductEntity product;
+
   final String imageUrl;
   final bool isFavorite;
-  final VoidCallback? onFavoriteTap;
+  final VoidCallback onToggleFavorite;
 
   const ProductImage({
     super.key,
+    required this.product,
     required this.imageUrl,
     this.isFavorite = false,
-    this.onFavoriteTap,
+    required this.onToggleFavorite,
   });
 
   @override
@@ -64,29 +68,18 @@ class ProductImage extends StatelessWidget {
           Positioned(
             top: 5.h,
             right: 5.w,
-            child: Container(
-              width: 35.w,
-              height: 35.h,
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 8.r,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: IconButton(
-                icon: Icon(
-                  isFavorite ? Icons.favorite : Icons.favorite,
-                  color: isFavorite ? Colors.red : Colors.grey,
-                  size: 22.w,
+            child: InkWell(
+              onTap: onToggleFavorite,
+              child: Container(
+                padding: EdgeInsets.all(6.w),
+                decoration: const BoxDecoration(
+                  color: AppColors.greyLight,
+                  shape: BoxShape.circle,
                 ),
-                onPressed: onFavoriteTap,
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
+                child: Icon(
+                  product.isFavorited ? Icons.favorite : Icons.favorite_border,
+                  color: product.isFavorited ? AppColors.error : AppColors.grey,
+                ),
               ),
             ),
           ),

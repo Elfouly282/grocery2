@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery2/features/product_details/presentation/widgets/product_details.dart';
+import 'package:grocery2/features/smart_lists/presentation/cubit/favorites_cubit.dart';
 
 import '../../../../core/constants/custom_app_bar.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -32,55 +33,82 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       backgroundColor: AppColors.backgroundColor,
       appBar: CustomAppBar(title: 'Product Details'),
 
-      body: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
-        builder: (context, state) {
-          if (state is ProductDetailsLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is ProductDetailsSuccess) {
-            final product = state.product;
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<ProductDetailsCubit, ProductDetailsState>(
+            listener: (context, state) {
+              if (state is ProductDetailsError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                    backgroundColor: AppColors.error,
+                  ),
+                );
+              }
+            },
+          ),
+        ],
+        child: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
+          builder: (context, state) {
+            if (state is ProductDetailsLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is ProductDetailsSuccess) {
+              final product = state.product;
 
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ProductImage(imageUrl: product.image),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ProductDetails(
-                            includes: product.includes,
-                            size: product.size,
-                            expiryDate: product.expiryDate,
-                            isExpired: product.isExpired,
-                            title: product.title,
-                            price: product.price,
-                            discountPrice: product.discountPrice,
-                            finalPrice: product.finalPrice,
-                            hasOffer: product.hasOffer,
-                            offerTitle: product.offerTitle,
-                            rating: product.rating,
-                            ratingCount: product.ratingCount,
-                          ),
-                          const SizedBox(height: 16),
-                          ProductDescription(product: product),
-                          const SizedBox(height: 16),
-                          const ProductBottomBar(),
-                        ],
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ProductImage(
+                        imageUrl: product.image,
+                        product: product,
+                        onToggleFavorite: () {
+                          context
+                              .read<ProductDetailsCubit>()
+                              .toggleFavoriteStatus();
+                          context.read<FavoritesCubit>().toggleFavorite(
+                            product.id,
+                          );
+                        },
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ProductDetails(
+                              includes: product.includes,
+                              size: product.size,
+                              expiryDate: product.expiryDate,
+                              isExpired: product.isExpired,
+                              title: product.title,
+                              price: product.price,
+                              discountPrice: product.discountPrice,
+                              finalPrice: product.finalPrice,
+                              hasOffer: product.hasOffer,
+                              offerTitle: product.offerTitle,
+                              rating: product.rating,
+                              ratingCount: product.ratingCount,
+                            ),
+                            const SizedBox(height: 16),
+                            ProductDescription(product: product),
+                            const SizedBox(height: 16),
+                            const ProductBottomBar(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          } else if (state is ProductDetailsError) {
-            return Center(child: Text(state.message));
-          }
-          return const SizedBox.shrink();
-        },
+              );
+            } else if (state is ProductDetailsError) {
+              return Center(child: Text(state.message));
+            }
+            return const SizedBox.shrink();
+          },
+        ),
       ),
     );
   }

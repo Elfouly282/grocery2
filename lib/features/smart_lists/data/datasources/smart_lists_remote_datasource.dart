@@ -1,5 +1,3 @@
-import '../models/favorite_model.dart';
-import '../models/history_item_model.dart';
 import '../models/smart_list_model.dart';
 
 class SmartListsRemoteDataSource {
@@ -14,16 +12,6 @@ class SmartListsRemoteDataSource {
     //   options: Options(headers: {'Authorization': 'Bearer $token'}),
     // );
     // return (response.data['data'] as List).map((e) => SmartListModel.fromJson(e)).toList();
-    return [];
-  }
-
-  Future<List<FavoriteModel>> getFavorites() async {
-    // TODO: Call API endpoint
-    return [];
-  }
-
-  Future<List<HistoryItemModel>> getHistory() async {
-    // TODO: Call API endpoint
     return [];
   }
 }

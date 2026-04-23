@@ -27,6 +27,17 @@ class GroceryApp extends StatelessWidget {
             useMaterial3: true,
           ),
 
+          // home: MultiBlocProvider(
+          //   providers: [
+          //     BlocProvider(
+          //       create: (context) => sl<ProductDetailsCubit>(),
+          //     ),
+          //     BlocProvider(
+          //       create: (context) => sl<FavoritesCubit>(),
+          //     ),
+          //   ],
+          //   child: const ProductDetailsScreen(productId: 1),
+          // ),
           home: MultiBlocProvider(
             providers: [
               BlocProvider<SmartListsCubit>(

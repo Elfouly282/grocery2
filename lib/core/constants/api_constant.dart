@@ -2,6 +2,10 @@ class ApiConstant {
   /// Base URL for API endpoints
   static const String baseUrl = 'https://grocery.newcinderella.online';
 
+  /// Fake Token
+  static const String token =
+      '803|6MTzKNnf8qsb1w3axoerLKIP5r5Imf9XmQUwVJzid742999d';
+
   /// API endpoints
   static const String login = '/auth/login';
   static const String signup = '/auth/signup';
@@ -16,6 +20,8 @@ class ApiConstant {
   static const String checkout = '/checkout';
   static const String getOrders = '/orders';
   static const String getOrderDetails = '/orders/:id';
+  static const String getFavorites = '/api/favorites';
+  static const String toggleFavorite = '/api/favorites/:id/toggle';
 
   /// Timeout duration in seconds
   static const int connectTimeout = 30;
@@ -27,4 +33,3 @@ class ApiConstant {
     'Content-Type': 'application/json',
   };
 }
-

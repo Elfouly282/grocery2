@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../domain/usecases/get_product_details.dart';
 import 'product_details_state.dart';
 
@@ -11,11 +12,18 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   void getProductDetails(int id) async {
     emit(ProductDetailsLoading());
 
-    try {
-      final product = await getProductDetailsUseCase(id);
+    final result = await getProductDetailsUseCase(id);
+    result.fold(
+      (failure) => emit(ProductDetailsError(failure.message)),
+      (product) => emit(ProductDetailsSuccess(product)),
+    );
+  }
+
+  void toggleFavoriteStatus() {
+    if (state is ProductDetailsSuccess) {
+      final product = (state as ProductDetailsSuccess).product;
+      product.isFavorited = !product.isFavorited;
       emit(ProductDetailsSuccess(product));
-    } catch (e) {
-      emit(ProductDetailsError(e.toString()));
     }
   }
 }

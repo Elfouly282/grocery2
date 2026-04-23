@@ -1,13 +1,14 @@
-import '../entities/favorite_entity.dart';
-import '../repositories/smart_lists_repository.dart';
+import 'package:fpdart/fpdart.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../product_details/domain/entities/product_entity.dart';
+import '../repositories/favorites_repository.dart';
 
 class GetFavorites {
-  final SmartListsRepository repository;
+  final FavoritesRepository repository;
 
   GetFavorites(this.repository);
 
-  Future<List<FavoriteEntity>> call() async {
-    // TODO: Implement logic to fetch favorites
+  Future<Either<Failure, List<ProductEntity>>> call() async {
     return await repository.getFavorites();
   }
 }

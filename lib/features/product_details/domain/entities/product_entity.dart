@@ -7,7 +7,7 @@ class ProductEntity {
   final String? offerTitle;
   final DateTime expiryDate;
   final double price;
-  final double discountPrice;
+  final double? discountPrice;
   final double finalPrice;
   final double rating;
   final int ratingCount;
@@ -23,8 +23,8 @@ class ProductEntity {
   final bool inStock;
   final int soldCount;
   final bool isAvailable;
-  final CategoryEntity? category;
-  final CategoryEntity? subcategory;
+  bool isFavorited;
+  final DateTime? favoritedAt;
 
   ProductEntity({
     required this.id,
@@ -34,7 +34,7 @@ class ProductEntity {
     required this.image,
     this.offerTitle,
     required this.price,
-    required this.discountPrice,
+    this.discountPrice,
     required this.finalPrice,
     required this.rating,
     required this.ratingCount,
@@ -49,21 +49,9 @@ class ProductEntity {
     required this.inStock,
     required this.soldCount,
     required this.isAvailable,
-    this.category,
-    this.subcategory,
     required this.expiryDate,
     required this.isExpired,
-  });
-}
-
-class CategoryEntity {
-  final int id;
-  final String name;
-  final String slug;
-
-  CategoryEntity({
-    required this.id,
-    required this.name,
-    required this.slug,
+    this.isFavorited = false,
+    this.favoritedAt,
   });
 }
