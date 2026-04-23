@@ -1,6 +1,6 @@
 class ApiConstant {
   /// Base URL for API endpoints
-  static const String baseUrl = 'https://api.example.com';
+  static const String baseUrl = 'https://grocery.newcinderella.online/api';
 
   /// API endpoints
   static const String login = '/auth/login';
@@ -9,13 +9,16 @@ class ApiConstant {
   static const String getProfile = '/user/profile';
   static const String updateProfile = '/user/profile/update';
   static const String getProducts = '/products';
-  static const String getProductDetails = '/products/:id';
+  static const String getProductDetails = '/products/:di';
   static const String addToCart = '/cart/add';
   static const String removeFromCart = '/cart/remove';
   static const String getCart = '/cart';
   static const String checkout = '/checkout';
   static const String getOrders = '/orders';
-  static const String getOrderDetails = '/orders/:id';
+  static const String getOrderDetails = '/orders/:di';
+  static const String sendOtp = '/auth/forgot-password';
+  static const String verifyOtp = '/auth/verify-otp';
+  static const String resetPassword = '/auth/reset-password';
 
   /// Timeout duration in seconds
   static const int connectTimeout = 30;
@@ -27,4 +30,3 @@ class ApiConstant {
     'Content-Type': 'application/json',
   };
 }
-

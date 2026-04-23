@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+ 
+import 'auth_interceptor.dart';
+import 'logging_interceptors.dart';
 
 class DioHelper {
   DioHelper._();
 
   static late Dio _dio;
-
 
   static void init({
     required String baseUrl,
@@ -21,6 +22,10 @@ class DioHelper {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
+        validateStatus: (status) {
+          // Accept all status codes and handle them in the app
+          return status != null && status >= 100 && status < 600;
+        },
       ),
     );
 
@@ -30,42 +35,11 @@ class DioHelper {
   static Dio get dio => _dio;
 
 
-  static String? _token;
-
-  static void setToken(String token) {
-    _token = token;
-  }
-
-  static void clearToken() {
-    _token = null;
-  }
-
-
   static void _addInterceptors(bool enableLogger) {
-    _dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) {
-          final withAuth = options.extra['withAuth'] == true;
-
-          if (withAuth && _token != null) {
-            options.headers['Authorization'] = 'Bearer $_token';
-          }
-
-          options.headers['Accept-Language'] = 'en';
-
-          handler.next(options);
-        },
-      ),
-    );
+    _dio.interceptors.add(AuthInterceptor());
 
     if (enableLogger) {
-      _dio.interceptors.add(
-        PrettyDioLogger(
-          requestBody: true,
-          requestHeader: true,
-          responseHeader: true,
-        ),
-      );
+      _dio.interceptors.add(LoggingInterceptor());
     }
   }
 
