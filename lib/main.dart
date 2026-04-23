@@ -4,7 +4,6 @@ import 'core/constants/api_constant.dart';
 import 'core/constants/dio_helper.dart';
 import 'core/constants/preference_manager.dart';
 import 'core/di/get_it.dart';
-import 'features/category/presentation/ui/category_view.dart';
 import 'features/home/presentation/ui/home_view.dart';
 
 void main() async{
