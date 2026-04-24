@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart'; // Ensure this import is added
 import 'package:grocery2/core/constants/dio_helper.dart';
-import 'package:grocery2/models/meal.dart';
+import 'package:grocery2/features/add_new_list/data/models/meal.dart';
 
 class MealService {
   Future<List<Meal>> fetchMeals() async {

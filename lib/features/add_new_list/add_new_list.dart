@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:grocery2/add_new_list/custom_button.dart';
-import 'package:grocery2/add_new_list/meal_card_widget.dart';
-import 'package:grocery2/add_new_list/meal_service.dart';
+import 'package:grocery2/features/add_new_list/custom_button.dart';
+import 'package:grocery2/features/add_new_list/meal_card_widget.dart';
+import 'package:grocery2/features/add_new_list/meal_service.dart';
 import 'package:grocery2/custom_button.dart';
-import 'package:grocery2/models/meal.dart';
+import 'package:grocery2/features/add_new_list/data/models/meal.dart';
 
 class AddNewList extends StatefulWidget {
   const AddNewList({super.key});
