@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:grocery2/core/constants/preference_manager.dart';
 import 'package:grocery2/features/on_boarding/presentation/UI/first_board.dart';
+import 'package:grocery2/features/home/presentation/ui/home_view.dart';
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -69,6 +71,17 @@ class _SplashViewState extends State<SplashView>
           context,
           MaterialPageRoute(builder: (_) => FirstBoard()),
         );
+        // Check if the user is logged in
+        // Assuming PreferenceManager has a method like 'isLoggedIn' or 'getAuthToken'
+        // For this example, we'll use a placeholder 'isLoggedIn' boolean.
+        // You might need to adjust this based on how your PreferenceManager stores login status.
+        final bool isLoggedIn = PreferenceManager().getBool('isLoggedIn') ?? false;
+
+        if (isLoggedIn) {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomeView()));
+        } else {
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => FirstBoard()));
+        }
       }
     });
   }

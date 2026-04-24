@@ -1,7 +1,7 @@
 class ApiConstant {
   /// Base URL for API endpoints
   static const String baseUrl = 'https://grocery.newcinderella.online/api';
- 
+   
   /// API endpoints
   static const String login = '/auth/login';
   static const String logout = '/auth/logout';
@@ -15,6 +15,7 @@ class ApiConstant {
   static const String updateProfile = '/user/profile/update';
   static const String getProducts = '/products';
   static const String getProductDetails = '/products/:di';
+  static const String getmeals = '/meals/:id';
   static const String addToCart = '/cart/add';
   static const String removeFromCart = '/cart/remove';
   static const String getCart = '/cart';
