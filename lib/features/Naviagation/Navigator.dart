@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:grocery2/features/add_new_list/add_new_list.dart';
 import 'package:grocery2/features/home/presentation/ui/home_view.dart';
- 
+
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
 
@@ -10,20 +11,20 @@ class Navigation extends StatefulWidget {
 
 class _NavigationState extends State<Navigation> {
   int currentIndex = 0; // متغير لمتابعة العنصر المختار
-  List<Widget>screens=[
-     HomeView(),
-      Container(child: Center(child: Text("My List"),)),
-      Container(child: Center(child: Text("My order"),)),
-      Container(child: Center(child: Text("Profile"),)),
+  List<Widget> screens = [
+    HomeView(),
+    AddNewList(),
+    Container(child: Center(child: Text("My order"))),
+    Container(child: Center(child: Text("Profile"))),
   ];
-   final Color primaryColor = const Color(0xFF004667); // اللون الأزرق الغامق
+  final Color primaryColor = const Color(0xFF004667); // اللون الأزرق الغامق
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[currentIndex],
       backgroundColor: Colors.grey[100], // لون خلفية الصفحة
-     
+
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -44,14 +45,20 @@ class _NavigationState extends State<Navigation> {
             onTap: (index) {
               setState(() {
                 currentIndex = index;
-               });
+              });
             },
             type: BottomNavigationBarType.fixed,
             backgroundColor: Colors.white,
             selectedItemColor: primaryColor,
             unselectedItemColor: Colors.black87,
-            selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-            unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+            selectedLabelStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 12,
+            ),
+            unselectedLabelStyle: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 12,
+            ),
             items: [
               BottomNavigationBarItem(
                 icon: _buildIcon(Icons.home_outlined, 0),
@@ -73,7 +80,6 @@ class _NavigationState extends State<Navigation> {
           ),
         ),
       ),
-    
     );
   }
 
