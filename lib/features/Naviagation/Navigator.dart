@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:grocery2/features/add_new_list/add_new_list.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery2/core/di/service_locator.dart';
 import 'package:grocery2/features/home/presentation/ui/home_view.dart';
 import 'package:grocery2/features/profile&setting/presentation/UI/profile.dart';
+import 'package:grocery2/features/smart_lists/presentation/cubit/favorites_cubit.dart';
+import 'package:grocery2/features/smart_lists/presentation/cubit/history_cubit.dart';
+import 'package:grocery2/features/smart_lists/presentation/cubit/smart_lists_cubit.dart';
+import 'package:grocery2/features/smart_lists/presentation/screens/smart_lists_screen.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -15,7 +20,7 @@ class _NavigationState extends State<Navigation> {
 
   final List<Widget> screens = [
     HomeView(),
-    AddNewList(),
+    const SmartListsScreen(),
     const Center(child: Text('My order')),
     const Profile(),
   ];
@@ -26,65 +31,72 @@ class _NavigationState extends State<Navigation> {
     final bottomTheme = theme.bottomNavigationBarTheme;
     final isDark = theme.brightness == Brightness.dark;
 
-    return Scaffold(
-      body: screens[currentIndex],
-      backgroundColor: theme.scaffoldBackgroundColor,
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: isDark ? Colors.black26 : Colors.black12,
-              spreadRadius: 0,
-              blurRadius: 10,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => sl<SmartListsCubit>()),
+        BlocProvider(create: (_) => sl<FavoritesCubit>()),
+        BlocProvider(create: (_) => sl<HistoryCubit>()),
+      ],
+      child: Scaffold(
+        body: screens[currentIndex],
+        backgroundColor: theme.scaffoldBackgroundColor,
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
             ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-          child: BottomNavigationBar(
-            currentIndex: currentIndex,
-            onTap: (index) {
-              setState(() {
-                currentIndex = index;
-              });
-            },
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: bottomTheme.backgroundColor,
-            selectedItemColor: bottomTheme.selectedItemColor,
-            unselectedItemColor: bottomTheme.unselectedItemColor,
-            selectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 12,
-            ),
-            unselectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 12,
-            ),
-            items: [
-              BottomNavigationBarItem(
-                icon: _buildIcon(context, Icons.home_outlined, 0),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: _buildIcon(context, Icons.list_alt_rounded, 1),
-                label: 'My List',
-              ),
-              BottomNavigationBarItem(
-                icon: _buildIcon(context, Icons.directions_car_outlined, 2),
-                label: 'My Order',
-              ),
-              BottomNavigationBarItem(
-                icon: _buildIcon(context, Icons.person_outline, 3),
-                label: 'Profile',
+            boxShadow: [
+              BoxShadow(
+                color: isDark ? Colors.black26 : Colors.black12,
+                spreadRadius: 0,
+                blurRadius: 10,
               ),
             ],
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+            child: BottomNavigationBar(
+              currentIndex: currentIndex,
+              onTap: (index) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: bottomTheme.backgroundColor,
+              selectedItemColor: bottomTheme.selectedItemColor,
+              unselectedItemColor: bottomTheme.unselectedItemColor,
+              selectedLabelStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+              unselectedLabelStyle: const TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+              ),
+              items: [
+                BottomNavigationBarItem(
+                  icon: _buildIcon(context, Icons.home_outlined, 0),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: _buildIcon(context, Icons.list_alt_rounded, 1),
+                  label: 'My List',
+                ),
+                BottomNavigationBarItem(
+                  icon: _buildIcon(context, Icons.directions_car_outlined, 2),
+                  label: 'My Order',
+                ),
+                BottomNavigationBarItem(
+                  icon: _buildIcon(context, Icons.person_outline, 3),
+                  label: 'Profile',
+                ),
+              ],
+            ),
           ),
         ),
       ),

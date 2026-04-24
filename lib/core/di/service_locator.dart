@@ -1,10 +1,5 @@
 import 'package:get_it/get_it.dart';
 
-import '../../features/product_details/data/datasources/product_remote_datasource.dart';
-import '../../features/product_details/data/repositories/product_repository_impl.dart';
-import '../../features/product_details/domain/repositories/product_repository.dart';
-import '../../features/product_details/domain/usecases/get_product_details.dart';
-import '../../features/product_details/presentation/cubit/product_details_cubit.dart';
 import '../../features/smart_lists/data/datasources/favorites_remote_datasource.dart';
 import '../../features/smart_lists/data/datasources/history_remote_datasource.dart';
 import '../../features/smart_lists/data/datasources/smart_list_remote_data_source.dart';
@@ -28,24 +23,6 @@ import '../../features/smart_lists/presentation/cubit/smart_lists_cubit.dart';
 final sl = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
-  // ============= Product Details Feature =============
-
-  // DataSource
-  sl.registerLazySingleton<ProductRemoteDataSource>(
-    () => ProductRemoteDataSourceImpl(),
-  );
-
-  // Repository
-  sl.registerLazySingleton<ProductRepository>(
-    () => ProductRepositoryImpl(remoteDataSource: sl()),
-  );
-
-  // UseCase
-  sl.registerLazySingleton(() => GetProductDetails(sl()));
-
-  // Cubit
-  sl.registerFactory(() => ProductDetailsCubit(sl<GetProductDetails>()));
-
   // ============= Favorites Feature =============
 
   // DataSource

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/text_style.dart';
+import '../../../../features/add_new_list/add_new_list.dart';
 import '../tabs/favorites_tab.dart';
 import '../tabs/history_tab.dart';
 import '../tabs/smart_lists_tab.dart';
@@ -35,18 +36,18 @@ class SmartListsScreen extends StatelessWidget {
         body: const TabBarView(
           children: [SmartListsTab(), FavoritesTab(), HistoryTab()],
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () {
-        //     Navigator.push(
-        //       context,
-        //       MaterialPageRoute(
-        //         builder: (context) => const CreateEditSmartListScreen(),
-        //       ),
-        //     );
-        //   },
-        //   backgroundColor: AppColors.primaryColor,
-        //   child: const Icon(Icons.add, color: AppColors.white),
-        // ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AddNewList(),
+              ),
+            );
+          },
+          backgroundColor: AppColors.primaryColor,
+          child: const Icon(Icons.add, color: AppColors.white),
+        ),
       ),
     );
   }
