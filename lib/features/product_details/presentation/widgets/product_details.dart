@@ -53,7 +53,7 @@ class ProductDetails extends StatelessWidget {
             offerTitle: offerTitle,
           ),
           SizedBox(height: 12.h),
-          Text('Details', style: AppTextStyles.titleLarge),
+          Text('Details', style: AppTextStyle.titleLarge),
           SizedBox(height: 12.h),
           Row(
             children: [
@@ -127,7 +127,7 @@ class ProductInfo extends StatelessWidget {
                 title,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: AppTextStyles.titleLarge,
+                style: AppTextStyle.titleLarge,
               ),
             ),
             const Spacer(),
@@ -149,7 +149,7 @@ class ProductInfo extends StatelessWidget {
                     if (hasOffer && price != finalPrice) SizedBox(width: 6.w),
                     Text(
                       '£${price.toStringAsFixed(2)}',
-                      style: AppTextStyles.bodySmall.copyWith(
+                      style: AppTextStyle.bodySmall.copyWith(
                         decoration: hasOffer && price != finalPrice
                             ? TextDecoration.lineThrough
                             : null,
@@ -169,7 +169,7 @@ class ProductInfo extends StatelessWidget {
                 if (hasOffer && offerTitle != null)
                   Text(
                     offerTitle!,
-                    style: AppTextStyles.titleMedium.copyWith(
+                    style: AppTextStyle.titleMedium.copyWith(
                       color: AppColors.error,
                     ),
                   ),

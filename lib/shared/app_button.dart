@@ -93,7 +93,7 @@ class AppButton extends StatelessWidget {
 
     final textWidget = Text(
       text,
-      style: textStyle ?? AppTextStyles.titleMedium.copyWith(color: textColor),
+      style: textStyle ?? AppTextStyle.titleMedium.copyWith(color: textColor),
     );
 
     if (icon != null) {

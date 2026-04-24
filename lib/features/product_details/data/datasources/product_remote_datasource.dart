@@ -10,7 +10,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   @override
   Future<ProductModel> getProductDetails(int id) async {
     final response = await DioHelper.get(
-      path: ApiConstant.getProductDetails.replaceFirst(':id', id.toString()),
+      path: ApiConstant.getmeals.replaceFirst(':id', id.toString()),
     );
     return ProductModel.fromJson(response.data['data']);
   }

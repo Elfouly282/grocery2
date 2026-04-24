@@ -92,7 +92,7 @@ class HistoryProductCard extends StatelessWidget {
                     /// TITLE
                     Text(
                       product.title,
-                      style: AppTextStyles.titleSmall.copyWith(
+                      style: AppTextStyle.titleSmall.copyWith(
                         color: AppColors.textPrimary,
                         height: 1.2,
                       ),
@@ -107,7 +107,7 @@ class HistoryProductCard extends StatelessWidget {
                       children: [
                         Text(
                           '£${product.finalPrice.toStringAsFixed(2)}',
-                          style: AppTextStyles.titleMedium.copyWith(
+                          style: AppTextStyle.titleMedium.copyWith(
                             color: hasDiscount
                                 ? AppColors.error
                                 : AppColors.primaryColor,
@@ -119,7 +119,7 @@ class HistoryProductCard extends StatelessWidget {
                           SizedBox(width: 6.w),
                           Text(
                             '£${product.price.toStringAsFixed(2)}',
-                            style: AppTextStyles.bodySmall.copyWith(
+                            style: AppTextStyle.bodySmall.copyWith(
                               color: AppColors.textSecondary,
                               decoration: TextDecoration.lineThrough,
                               fontSize: 11.sp,

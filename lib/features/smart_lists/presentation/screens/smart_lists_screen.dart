@@ -16,7 +16,7 @@ class SmartListsScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
         appBar: AppBar(
-          title: Text('Smart Lists', style: AppTextStyles.headlineSmall),
+          title: Text('Smart Lists', style: AppTextStyle.headlineSmall),
           centerTitle: true,
           backgroundColor: AppColors.white,
           elevation: 0,
@@ -24,7 +24,7 @@ class SmartListsScreen extends StatelessWidget {
             labelColor: AppColors.primaryColor,
             unselectedLabelColor: AppColors.textSecondary,
             indicatorColor: AppColors.primaryColor,
-            labelStyle: AppTextStyles.titleSmall,
+            labelStyle: AppTextStyle.titleSmall,
             tabs: const [
               Tab(text: 'Lists'),
               Tab(text: 'Favorites'),

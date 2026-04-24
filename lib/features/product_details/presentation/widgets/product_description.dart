@@ -17,22 +17,20 @@ class ProductDescription extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Description', style: AppTextStyles.headlineSmall),
+          Text('Description', style: AppTextStyle.headlineSmall),
           SizedBox(height: 5.h),
           Text(
             product.description,
-            style: AppTextStyles.bodyLarge.copyWith(color: AppColors.greyDark),
+            style: AppTextStyle.bodyLarge.copyWith(color: AppColors.greyDark),
           ),
 
           SizedBox(height: 20.h),
           if (product.howToUse != null && product.howToUse!.isNotEmpty) ...[
-            Text('How to Use', style: AppTextStyles.headlineSmall),
+            Text('How to Use', style: AppTextStyle.headlineSmall),
             SizedBox(height: 5.h),
             Text(
               product.howToUse!,
-              style: AppTextStyles.bodyLarge.copyWith(
-                color: AppColors.greyDark,
-              ),
+              style: AppTextStyle.bodyLarge.copyWith(color: AppColors.greyDark),
             ),
           ],
         ],

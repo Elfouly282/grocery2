@@ -32,7 +32,7 @@ class DetailCardItem extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppTextStyles.bodyMedium.copyWith(
+            style: AppTextStyle.bodyMedium.copyWith(
               fontWeight: FontWeight.bold,
               color: AppColors.primaryColor,
             ),
@@ -42,7 +42,7 @@ class DetailCardItem extends StatelessWidget {
 
           Text(
             value,
-            style: AppTextStyles.bodyMedium.copyWith(color: valueColor),
+            style: AppTextStyle.bodyMedium.copyWith(color: valueColor),
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,

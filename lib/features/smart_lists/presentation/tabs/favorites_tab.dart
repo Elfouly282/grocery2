@@ -42,7 +42,7 @@ class _FavoritesTabState extends State<FavoritesTab> {
                     color: AppColors.error,
                   ),
                   SizedBox(height: 16.h),
-                  Text(state.message, style: AppTextStyles.bodyLarge),
+                  Text(state.message, style: AppTextStyle.bodyLarge),
                   SizedBox(height: 12.h),
                   ElevatedButton(
                     onPressed: () => context.read<FavoritesCubit>().load(),
@@ -63,17 +63,14 @@ class _FavoritesTabState extends State<FavoritesTab> {
                       color: AppColors.grey,
                     ),
                     SizedBox(height: 16.h),
-                    Text(
-                      'No favorites yet',
-                      style: AppTextStyles.headlineSmall,
-                    ),
+                    Text('No favorites yet', style: AppTextStyle.headlineSmall),
                     SizedBox(height: 8.h),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40.w),
                       child: Text(
                         'Start adding products to your wishlist to see them here!',
                         textAlign: TextAlign.center,
-                        style: AppTextStyles.bodyMedium.copyWith(
+                        style: AppTextStyle.bodyMedium.copyWith(
                           color: AppColors.textSecondary,
                         ),
                       ),

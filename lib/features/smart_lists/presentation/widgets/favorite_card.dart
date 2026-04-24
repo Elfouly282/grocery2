@@ -79,7 +79,7 @@ class FavoriteCard extends StatelessWidget {
             children: [
               Text(
                 product.title,
-                style: AppTextStyles.titleMedium,
+                style: AppTextStyle.titleMedium,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -90,7 +90,7 @@ class FavoriteCard extends StatelessWidget {
                 children: [
                   Text(
                     '£${product.finalPrice.toStringAsFixed(2)}',
-                    style: AppTextStyles.titleLarge.copyWith(
+                    style: AppTextStyle.titleLarge.copyWith(
                       color: AppColors.primaryColor,
                     ),
                   ),
@@ -98,7 +98,7 @@ class FavoriteCard extends StatelessWidget {
                     SizedBox(width: 8.w),
                     Text(
                       '£${product.price.toStringAsFixed(2)}',
-                      style: AppTextStyles.bodySmall.copyWith(
+                      style: AppTextStyle.bodySmall.copyWith(
                         color: AppColors.grey,
                         decoration: TextDecoration.lineThrough,
                       ),

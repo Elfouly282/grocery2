@@ -41,7 +41,7 @@ class _HistoryTabState extends State<HistoryTab> {
                     color: AppColors.error,
                   ),
                   SizedBox(height: 16.h),
-                  Text(state.message, style: AppTextStyles.bodyLarge),
+                  Text(state.message, style: AppTextStyle.bodyLarge),
                   SizedBox(height: 12.h),
                   ElevatedButton(
                     onPressed: () => context.read<HistoryCubit>().load(),
@@ -58,17 +58,14 @@ class _HistoryTabState extends State<HistoryTab> {
                   children: [
                     Icon(Icons.history, size: 80.sp, color: AppColors.grey),
                     SizedBox(height: 16.h),
-                    Text(
-                      'No order history',
-                      style: AppTextStyles.headlineSmall,
-                    ),
+                    Text('No order history', style: AppTextStyle.headlineSmall),
                     SizedBox(height: 8.h),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40.w),
                       child: Text(
                         'Your ordered products will appear here!',
                         textAlign: TextAlign.center,
-                        style: AppTextStyles.bodyMedium.copyWith(
+                        style: AppTextStyle.bodyMedium.copyWith(
                           color: AppColors.textSecondary,
                         ),
                       ),

@@ -1,12 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:grocery2/core/constants/preference_manager.dart';
-
+import 'package:grocery2/core/constants/storage_keys.dart';
 
 class AuthInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     // Get token from preference manager if available
-    final String? token = PreferenceManager().getString('auth_token');
+    final String? token =
+        PreferenceManager().getString(StorageKeys.authToken) ??
+        PreferenceManager().getString('token');
 
     if (token != null && token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';

@@ -64,7 +64,7 @@ class SmartListCard extends StatelessWidget {
                     // 🏷️ Title
                     Text(
                       smartList.name,
-                      style: AppTextStyles.titleMedium,
+                      style: AppTextStyle.titleMedium,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -73,7 +73,7 @@ class SmartListCard extends StatelessWidget {
                     if (smartList.category != null)
                       Text(
                         smartList.category!,
-                        style: AppTextStyles.bodySmall.copyWith(
+                        style: AppTextStyle.bodySmall.copyWith(
                           color: AppColors.textSecondary,
                         ),
                         maxLines: 1,
@@ -84,7 +84,7 @@ class SmartListCard extends StatelessWidget {
                     if (smartList.description != null)
                       Text(
                         smartList.description!,
-                        style: AppTextStyles.bodySmall.copyWith(
+                        style: AppTextStyle.bodySmall.copyWith(
                           color: AppColors.textSecondary,
                         ),
                         maxLines: 2,
@@ -101,7 +101,7 @@ class SmartListCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             '${meals.length} items',
-                            style: AppTextStyles.labelSmall.copyWith(
+                            style: AppTextStyle.labelSmall.copyWith(
                               color: AppColors.primaryColor,
                             ),
                           ),
@@ -124,7 +124,7 @@ class SmartListCard extends StatelessWidget {
                                   ),
                                   child: Text(
                                     'Price Drop',
-                                    style: AppTextStyles.labelSmall.copyWith(
+                                    style: AppTextStyle.labelSmall.copyWith(
                                       color: AppColors.error,
                                       fontSize: 9.sp,
                                     ),
@@ -149,7 +149,7 @@ class SmartListCard extends StatelessWidget {
                                   ),
                                   child: Text(
                                     'Offers',
-                                    style: AppTextStyles.labelSmall.copyWith(
+                                    style: AppTextStyle.labelSmall.copyWith(
                                       color: AppColors.primaryColor,
                                       fontSize: 9.sp,
                                     ),

@@ -46,7 +46,7 @@ class _SmartListsTabState extends State<SmartListsTab> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(state.message, style: AppTextStyles.bodyMedium),
+                Text(state.message, style: AppTextStyle.bodyMedium),
                 SizedBox(height: 16.h),
                 ElevatedButton(
                   onPressed: () =>
@@ -70,11 +70,11 @@ class _SmartListsTabState extends State<SmartListsTab> {
               children: [
                 Icon(Icons.list_alt, size: 80.sp, color: AppColors.grey),
                 SizedBox(height: 16.h),
-                Text('No smart lists found', style: AppTextStyles.titleMedium),
+                Text('No smart lists found', style: AppTextStyle.titleMedium),
                 SizedBox(height: 8.h),
                 Text(
                   'Create your first list to get started!',
-                  style: AppTextStyles.bodyMedium.copyWith(
+                  style: AppTextStyle.bodyMedium.copyWith(
                     color: AppColors.textSecondary,
                   ),
                 ),

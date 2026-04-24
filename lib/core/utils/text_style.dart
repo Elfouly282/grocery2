@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AppTextStyles {
+class AppTextStyle {
   /// Display Styles
   static TextStyle displayLarge = TextStyle(
     fontSize: 32.sp,
@@ -52,6 +52,11 @@ class AppTextStyles {
   static TextStyle titleMedium = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w600,
+    height: 1.5,
+  );
+  static const TextStyle titleMedium16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
     height: 1.5,
   );
 
