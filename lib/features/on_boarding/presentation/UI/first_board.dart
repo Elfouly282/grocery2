@@ -40,7 +40,10 @@ class FirstBoard extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => LoginScreen()),
+                        );
                       },
                       child: const Text(
                         'Skip',
@@ -55,9 +58,7 @@ class FirstBoard extends StatelessWidget {
                       controller: _pageController,
                       itemCount: data.length,
                       onPageChanged: (index) {
-                        context
-                            .read<OnBoardingCubitCubit>()
-                            .pageChanged(index);
+                        context.read<OnBoardingCubitCubit>().pageChanged(index);
                       },
                       itemBuilder: (context, index) {
                         return Padding(
@@ -79,8 +80,7 @@ class FirstBoard extends StatelessWidget {
                               Text(
                                 data[index]['subtitle']!,
                                 textAlign: TextAlign.center,
-                                style:
-                                    const TextStyle(color: Colors.grey),
+                                style: const TextStyle(color: Colors.grey),
                               ),
                             ],
                           ),
@@ -90,8 +90,7 @@ class FirstBoard extends StatelessWidget {
                   ),
 
                   /// Indicator
-                 
-                    Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
                       data.length,
@@ -115,7 +114,9 @@ class FirstBoard extends StatelessWidget {
                   /// Buttons
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 20),
+                      horizontal: 20,
+                      vertical: 20,
+                    ),
                     child: Container(
                       height: 70,
                       decoration: BoxDecoration(
@@ -123,8 +124,7 @@ class FirstBoard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           /// Back
                           Container(
@@ -140,12 +140,15 @@ class FirstBoard extends StatelessWidget {
                                     : () {
                                         _pageController.previousPage(
                                           duration: const Duration(
-                                              milliseconds: 300),
+                                            milliseconds: 300,
+                                          ),
                                           curve: Curves.easeInOut,
                                         );
                                       },
-                                icon: const Icon(Icons.arrow_back,
-                                    color: Colors.white),
+                                icon: const Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
@@ -158,11 +161,11 @@ class FirstBoard extends StatelessWidget {
                               backgroundColor: Colors.teal,
                               child: IconButton(
                                 onPressed: () {
-                                  if (currentIndex <
-                                      data.length - 1) {
+                                  if (currentIndex < data.length - 1) {
                                     _pageController.nextPage(
-                                      duration:
-                                          const Duration(milliseconds: 300),
+                                      duration: const Duration(
+                                        milliseconds: 300,
+                                      ),
                                       curve: Curves.easeInOut,
                                     );
                                   } else {
@@ -176,8 +179,10 @@ class FirstBoard extends StatelessWidget {
                                     // navigate to login or home screen
                                   }
                                 },
-                                icon: const Icon(Icons.arrow_forward,
-                                    color: Colors.white),
+                                icon: const Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),

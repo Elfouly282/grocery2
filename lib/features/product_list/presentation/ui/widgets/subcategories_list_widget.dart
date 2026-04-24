@@ -7,9 +7,9 @@ import 'package:grocery2/core/enums/request_status_enum.dart';
 import 'package:grocery2/features/product_list/presentation/logic/product_list_cubit.dart';
 
 class SubcategoriesListWidget extends StatelessWidget {
-        final  int id;
-  SubcategoriesListWidget({super.key,required this.id});
- 
+  final int id;
+  SubcategoriesListWidget({super.key, required this.id});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductListCubit, ProductListState>(
@@ -22,7 +22,8 @@ class SubcategoriesListWidget extends StatelessWidget {
             );
           case RequestStatusEnum.error:
             return SliverToBoxAdapter(
-                child: Center(child: Text(state.errorMessage ?? "Error")));
+              child: Center(child: Text(state.errorMessage ?? "Error")),
+            );
           case RequestStatusEnum.loaded:
             // Show filtered subcategories
             if (state.filteredSubcategories.isEmpty) {
@@ -49,10 +50,11 @@ class SubcategoriesListWidget extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
                   scrollDirection: Axis.horizontal,
                   itemCount: state.filteredSubcategories.length,
-                  separatorBuilder: (context, index) => SizedBox(width: AppSizes.w8),
+                  separatorBuilder: (context, index) =>
+                      SizedBox(width: AppSizes.w8),
                   itemBuilder: (BuildContext context, int index) {
                     final subcategory = state.filteredSubcategories[index];
-                    
+
                     // Safely parse subId to int
                     final subIdInt = int.tryParse(subcategory.subId);
                     if (subIdInt == null) {
@@ -64,9 +66,9 @@ class SubcategoriesListWidget extends StatelessWidget {
 
                     return GestureDetector(
                       onTap: () {
-                        context
-                            .read<ProductListCubit>()
-                            .selectSubcategory(subIdInt);
+                        context.read<ProductListCubit>().selectSubcategory(
+                          subIdInt,
+                        );
                       },
                       child: Container(
                         width: AppSizes.w80,
@@ -87,38 +89,39 @@ class SubcategoriesListWidget extends StatelessWidget {
                               height: AppSizes.h60,
                               width: AppSizes.w64,
                               decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(AppSizes.r16),
+                                borderRadius: BorderRadius.circular(
+                                  AppSizes.r16,
+                                ),
                                 color: AppColor.greyLight,
                               ),
-                              child: subcategory.image != null &&
+                              child:
+                                  subcategory.image != null &&
                                       subcategory.image!.isNotEmpty
                                   ? ClipRRect(
                                       borderRadius: BorderRadius.circular(
-                                          AppSizes.r16),
+                                        AppSizes.r16,
+                                      ),
                                       child: Image.network(
                                         subcategory.image!,
                                         fit: BoxFit.cover,
-                                        loadingBuilder:
-                                            (context, child, loadingProgress) {
+                                        loadingBuilder: (context, child, loadingProgress) {
                                           if (loadingProgress == null)
                                             return child;
                                           return Center(
-                                            child:
-                                                CircularProgressIndicator(
-                                              value: loadingProgress
+                                            child: CircularProgressIndicator(
+                                              value:
+                                                  loadingProgress
                                                           .expectedTotalBytes !=
                                                       null
                                                   ? loadingProgress
-                                                          .cumulativeBytesLoaded /
-                                                      loadingProgress
-                                                          .expectedTotalBytes!
+                                                            .cumulativeBytesLoaded /
+                                                        loadingProgress
+                                                            .expectedTotalBytes!
                                                   : null,
                                             ),
                                           );
                                         },
-                                        errorBuilder: (context, error,
-                                            stackTrace) {
+                                        errorBuilder: (context, error, stackTrace) {
                                           return Center(
                                             child: Icon(
                                               Icons

@@ -18,10 +18,7 @@ class CategoryCubit extends Cubit<CategoryState> {
     try {
       final categories = await catigoryRepo.getSubCategories();
 
-      emit(CategorySuccess(
-        categories: categories,
-        selectedIndex: index,
-      ));
+      emit(CategorySuccess(categories: categories, selectedIndex: index));
 
       final id = categories.data[index].id;
 
@@ -35,10 +32,7 @@ class CategoryCubit extends Cubit<CategoryState> {
     final current = state;
     if (current is CategorySuccess) {
       final id = current.categories.data[index].id;
-      emit(current.copyWith(
-        selectedIndex: index,
-        isDetailsLoading: true,
-      ));
+      emit(current.copyWith(selectedIndex: index, isDetailsLoading: true));
       getDetails(id);
     }
   }
@@ -50,10 +44,7 @@ class CategoryCubit extends Cubit<CategoryState> {
       try {
         final details = await catigoryRepo.getDetailsSubCategories(id);
 
-        emit(current.copyWith(
-          details: details,
-          isDetailsLoading: false,
-        ));
+        emit(current.copyWith(details: details, isDetailsLoading: false));
       } catch (e) {
         emit(CategoryError(message: _handleError(e)));
       }

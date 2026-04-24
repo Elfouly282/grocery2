@@ -88,8 +88,11 @@ class _AddNewListState extends State<AddNewList> {
     // print("BUILD → filteredMeals: ${filteredMeals.length}");
     // print("isLoading: $isLoading");
     return Scaffold(
-      
-      appBar: AppBar(automaticallyImplyLeading: false,centerTitle: true, title: Text("Add a new List")),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: Text("Add a new List"),
+      ),
       body: SafeArea(
         child: Column(
           children: [

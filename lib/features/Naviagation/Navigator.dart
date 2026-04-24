@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grocery2/features/add_new_list/add_new_list.dart';
 import 'package:grocery2/features/home/presentation/ui/home_view.dart';
+import 'package:grocery2/features/profile&setting/presentation/UI/profile.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -10,29 +11,36 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-  int currentIndex = 0; // متغير لمتابعة العنصر المختار
-  List<Widget> screens = [
+  int currentIndex = 0;
+
+  final List<Widget> screens = [
     HomeView(),
     AddNewList(),
-    Container(child: Center(child: Text("My order"))),
-    Container(child: Center(child: Text("Profile"))),
+    const Center(child: Text('My order')),
+    const Profile(),
   ];
-  final Color primaryColor = const Color(0xFF004667); // اللون الأزرق الغامق
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final bottomTheme = theme.bottomNavigationBarTheme;
+    final isDark = theme.brightness == Brightness.dark;
+
     return Scaffold(
       body: screens[currentIndex],
-      backgroundColor: Colors.grey[100], // لون خلفية الصفحة
-
+      backgroundColor: theme.scaffoldBackgroundColor,
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(30),
             topRight: Radius.circular(30),
           ),
           boxShadow: [
-            BoxShadow(color: Colors.black12, spreadRadius: 0, blurRadius: 10),
+            BoxShadow(
+              color: isDark ? Colors.black26 : Colors.black12,
+              spreadRadius: 0,
+              blurRadius: 10,
+            ),
           ],
         ),
         child: ClipRRect(
@@ -48,9 +56,9 @@ class _NavigationState extends State<Navigation> {
               });
             },
             type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.white,
-            selectedItemColor: primaryColor,
-            unselectedItemColor: Colors.black87,
+            backgroundColor: bottomTheme.backgroundColor,
+            selectedItemColor: bottomTheme.selectedItemColor,
+            unselectedItemColor: bottomTheme.unselectedItemColor,
             selectedLabelStyle: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 12,
@@ -61,19 +69,19 @@ class _NavigationState extends State<Navigation> {
             ),
             items: [
               BottomNavigationBarItem(
-                icon: _buildIcon(Icons.home_outlined, 0),
+                icon: _buildIcon(context, Icons.home_outlined, 0),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: _buildIcon(Icons.list_alt_rounded, 1),
+                icon: _buildIcon(context, Icons.list_alt_rounded, 1),
                 label: 'My List',
               ),
               BottomNavigationBarItem(
-                icon: _buildIcon(Icons.directions_car_outlined, 2),
+                icon: _buildIcon(context, Icons.directions_car_outlined, 2),
                 label: 'My Order',
               ),
               BottomNavigationBarItem(
-                icon: _buildIcon(Icons.person_outline, 3),
+                icon: _buildIcon(context, Icons.person_outline, 3),
                 label: 'Profile',
               ),
             ],
@@ -83,18 +91,24 @@ class _NavigationState extends State<Navigation> {
     );
   }
 
-  // "Widget" مخصص لرسم الدائرة الزرقاء حول الأيقونة المختارة
-  Widget _buildIcon(IconData iconData, int index) {
-    bool isSelected = currentIndex == index;
+  Widget _buildIcon(BuildContext context, IconData iconData, int index) {
+    final isSelected = currentIndex == index;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final unselectedColor =
+        theme.bottomNavigationBarTheme.unselectedItemColor ??
+        theme.iconTheme.color ??
+        Colors.black87;
+
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: isSelected ? primaryColor : Colors.transparent,
+        color: isSelected ? colorScheme.primary : Colors.transparent,
         shape: BoxShape.circle,
       ),
       child: Icon(
         iconData,
-        color: isSelected ? Colors.white : Colors.black87,
+        color: isSelected ? colorScheme.onPrimary : unselectedColor,
         size: 28,
       ),
     );

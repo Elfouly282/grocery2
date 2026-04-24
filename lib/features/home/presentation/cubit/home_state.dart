@@ -11,10 +11,7 @@ class HomeSuccess extends HomeState {
   final List<DealModel> deals;
   final List<CategoryModel> categories;
 
-  HomeSuccess({
-    required this.deals,
-    required this.categories,
-  });
+  HomeSuccess({required this.deals, required this.categories});
 }
 
 class HomeError extends HomeState {

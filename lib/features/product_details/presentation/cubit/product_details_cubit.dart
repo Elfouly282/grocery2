@@ -6,7 +6,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   final GetProductDetails getProductDetailsUseCase;
 
   ProductDetailsCubit(this.getProductDetailsUseCase)
-      : super(ProductDetailsInitial());
+    : super(ProductDetailsInitial());
 
   void getProductDetails(int id) async {
     emit(ProductDetailsLoading());

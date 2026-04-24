@@ -1,4 +1,4 @@
-class Category   {
+class Category {
   Category({required this.id, required this.name, required this.slug});
 
   final String id;
@@ -16,5 +16,4 @@ class Category   {
       slug: map['slug']?.toString() ?? '',
     );
   }
-
 }

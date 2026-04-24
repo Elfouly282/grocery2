@@ -38,9 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthCubit(
-        AuthRepoImpl(
-          preferenceManager: PreferenceManager(),
-        ),
+        AuthRepoImpl(preferenceManager: PreferenceManager()),
         preferenceManager: PreferenceManager(),
       ),
       child: GestureDetector(
@@ -53,7 +51,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
               if (state is AuthSuccessState) {
                 snackBar.successBar(context, "Welcome ${state.user.username}");
-                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){return Navigation();}));
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Navigation();
+                    },
+                  ),
+                );
               } else if (state is AuthErrorState) {
                 snackBar.errorBar(context, state.message);
               }
@@ -161,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         alignment: Alignment.centerRight,
                                         child: TextButton(
                                           onPressed: () {
-                                            Navigator .push(
+                                            Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>

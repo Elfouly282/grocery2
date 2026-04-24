@@ -30,9 +30,7 @@ class ProductDescription extends StatelessWidget {
             SizedBox(height: 5.h),
             Text(
               product.howToUse!,
-              style: AppTextStyle.bodyLarge.copyWith(
-                color: AppColors.greyDark,
-              ),
+              style: AppTextStyle.bodyLarge.copyWith(color: AppColors.greyDark),
             ),
           ],
         ],

@@ -12,9 +12,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AuthCubit(
-        AuthRepoImpl(
-          preferenceManager: PreferenceManager(),
-        ),
+        AuthRepoImpl(preferenceManager: PreferenceManager()),
         preferenceManager: PreferenceManager(),
       ),
       child: const LoginScreen(),

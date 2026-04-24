@@ -9,13 +9,12 @@ part 'product_list_state.dart';
 
 class ProductListCubit extends Cubit<ProductListState> {
   final BaseSubcategoriesRepository baseSubcategoriesRepository;
-  final String _initialCategoryId; // Store the initial category ID as String for comparison
+  final String
+  _initialCategoryId; // Store the initial category ID as String for comparison
 
-  ProductListCubit(
-    this.baseSubcategoriesRepository, {
-    required int categoryId,
-  })  : _initialCategoryId = categoryId.toString(),
-        super(const ProductListState());
+  ProductListCubit(this.baseSubcategoriesRepository, {required int categoryId})
+    : _initialCategoryId = categoryId.toString(),
+      super(const ProductListState());
 
   /// Fetch and filter subcategories, then auto-select the first one and fetch its meals
   Future<void> fetchSubcategoriesAndMeals() async {
@@ -34,8 +33,8 @@ class ProductListCubit extends Cubit<ProductListState> {
       );
 
       // Fetch all subcategories from API
-      final allSubcategories =
-          await baseSubcategoriesRepository.getSubCategories();
+      final allSubcategories = await baseSubcategoriesRepository
+          .getSubCategories();
 
       if (allSubcategories == null || allSubcategories.isEmpty) {
         emit(
@@ -51,9 +50,11 @@ class ProductListCubit extends Cubit<ProductListState> {
 
       // Filter subcategories locally by matching category.id with initialCategoryId
       final filteredSubcategories = allSubcategories
-          .where((sub) =>
-              sub.category != null &&
-              sub.category!.id.toString() == _initialCategoryId)
+          .where(
+            (sub) =>
+                sub.category != null &&
+                sub.category!.id.toString() == _initialCategoryId,
+          )
           .toList();
 
       // Update state with filtered subcategories
@@ -90,7 +91,8 @@ class ProductListCubit extends Cubit<ProductListState> {
 
   /// Select the first subcategory and immediately fetch its meals
   Future<void> _selectAndFetchFirstSubcategory(
-      SubCategoriesModel subcategory) async {
+    SubCategoriesModel subcategory,
+  ) async {
     try {
       // Parse subId safely from String to int
       final subCategoryIntId = _parseSubIdToInt(subcategory.subId);
@@ -170,8 +172,9 @@ class ProductListCubit extends Cubit<ProductListState> {
       );
 
       // Combine meals with previous results (or replace if reset)
-      final updatedMeals =
-          reset ? dataModel.meals : [...state.meals, ...dataModel.meals];
+      final updatedMeals = reset
+          ? dataModel.meals
+          : [...state.meals, ...dataModel.meals];
 
       emit(
         state.copyWith(

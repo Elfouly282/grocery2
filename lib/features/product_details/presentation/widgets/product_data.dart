@@ -78,9 +78,7 @@ class ProductInfo extends StatelessWidget {
                 if (hasOffer && offerTitle != null)
                   Text(
                     offerTitle!,
-                    style: AppTextStyle.titleMedium.copyWith(
-                      color: Colors.red,
-                    ),
+                    style: AppTextStyle.titleMedium.copyWith(color: Colors.red),
                   ),
               ],
             ),

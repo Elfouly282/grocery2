@@ -21,12 +21,12 @@ class HistoryItemEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        productId,
-        productTitle,
-        productImage,
-        price,
-        quantity,
-        purchasedAt,
-      ];
+    id,
+    productId,
+    productTitle,
+    productImage,
+    price,
+    quantity,
+    purchasedAt,
+  ];
 }

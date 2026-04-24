@@ -61,9 +61,5 @@ class CategoryEntity {
   final String name;
   final String slug;
 
-  CategoryEntity({
-    required this.id,
-    required this.name,
-    required this.slug,
-  });
+  CategoryEntity({required this.id, required this.name, required this.slug});
 }

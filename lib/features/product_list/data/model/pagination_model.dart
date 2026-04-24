@@ -32,7 +32,7 @@ class Pagination {
       lastPage: _parseInt(map['lastPage']),
       perPage: _parseInt(map['perPage']),
       total: _parseInt(map['total']),
-      from: _parseInt(map['from']),   // ← this is the null one
+      from: _parseInt(map['from']), // ← this is the null one
       to: _parseInt(map['to']),
     );
   }

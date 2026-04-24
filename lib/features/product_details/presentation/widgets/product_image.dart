@@ -17,8 +17,8 @@ class ProductImage extends StatelessWidget {
 
   /// Check if the image URL is valid and not empty
   bool _isValidImageUrl() {
-    return imageUrl.isNotEmpty && 
-           (imageUrl.startsWith('http://') || imageUrl.startsWith('https://'));
+    return imageUrl.isNotEmpty &&
+        (imageUrl.startsWith('http://') || imageUrl.startsWith('https://'));
   }
 
   @override
@@ -49,7 +49,7 @@ class ProductImage extends StatelessWidget {
                             child: CircularProgressIndicator(
                               value: loadingProgress.expectedTotalBytes != null
                                   ? loadingProgress.cumulativeBytesLoaded /
-                                      loadingProgress.expectedTotalBytes!
+                                        loadingProgress.expectedTotalBytes!
                                   : null,
                               color: AppColors.primaryColor,
                               strokeWidth: 2.w,
@@ -129,18 +129,11 @@ class ProductImage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.image_outlined,
-            size: 60.w,
-            color: AppColors.grey,
-          ),
+          Icon(Icons.image_outlined, size: 60.w, color: AppColors.grey),
           SizedBox(height: 8.h),
           Text(
             'No image provided',
-            style: TextStyle(
-              color: AppColors.grey,
-              fontSize: 12.sp,
-            ),
+            style: TextStyle(color: AppColors.grey, fontSize: 12.sp),
           ),
         ],
       ),

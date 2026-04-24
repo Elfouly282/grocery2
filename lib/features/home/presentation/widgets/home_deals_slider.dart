@@ -54,9 +54,7 @@ class HomeDealsSlider extends StatelessWidget {
                   },
                 ),
 
-                Container(
-                  color: Colors.black.withOpacity(0.35),
-                ),
+                Container(color: Colors.black.withOpacity(0.35)),
 
                 Padding(
                   padding: const EdgeInsets.all(16),
@@ -67,16 +65,16 @@ class HomeDealsSlider extends StatelessWidget {
                       if (deal.hasOffer)
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 5),
+                            horizontal: 10,
+                            vertical: 5,
+                          ),
                           decoration: BoxDecoration(
                             color: AppColor.white,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
                             deal.offerTitle ?? "Offer",
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
 
@@ -97,9 +95,7 @@ class HomeDealsSlider extends StatelessWidget {
 
                       Text(
                         "\$${deal.finalPrice > 0 ? deal.finalPrice : deal.price}",
-                        style: const TextStyle(
-                          color: Colors.white70,
-                        ),
+                        style: const TextStyle(color: Colors.white70),
                       ),
                     ],
                   ),

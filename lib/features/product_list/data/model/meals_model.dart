@@ -55,14 +55,14 @@ class MealsModel {
 
   factory MealsModel.fromJson(Map<String, dynamic> json) {
     return MealsModel(
-      mealId: json['id'].toString() ,
+      mealId: json['id'].toString(),
       mealTitle: json['title'] as String,
       mealSlug: json['slug'] as String,
       mealDescription: json['description'] as String,
       mealImage: json['image_url'] as String,
-      offerTitle:( json['offer_title'] as String?),
+      offerTitle: (json['offer_title'] as String?),
       price: (json['price'] as num).toDouble(),
-      discountPrice: (json['discount_price'] as double?) ,
+      discountPrice: (json['discount_price'] as double?),
       finalPrice: (json['final_price'] as num).toDouble(),
       rating: (json['rating'] as num).toDouble(),
       ratingCount: json['rating_count'] as int,

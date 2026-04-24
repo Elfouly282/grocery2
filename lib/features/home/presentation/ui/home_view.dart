@@ -1,10 +1,6 @@
- 
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:grocery2/core/constants/app_color.dart';
 import 'package:grocery2/core/di/get_it.dart';
 import 'package:grocery2/core/shared_widgets/categories_horizontal_list.dart';
 import 'package:grocery2/core/utils/text_style.dart';
@@ -30,18 +26,16 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => HomeCubit()..getHomeData(),
-        ),
+        BlocProvider(create: (_) => HomeCubit()..getHomeData()),
         BlocProvider(
           create: (_) =>
-              CategoryCubit(getIt<CategoryRepoImpl>())
-                ..getCategoryWithIndex(0),
+              CategoryCubit(getIt<CategoryRepoImpl>())..getCategoryWithIndex(0),
         ),
- 
+
         BlocProvider(
-          create: (_) => RecommendationCubit(RecommendationRepository())
-            ..loadRecommendations(),
+          create: (_) =>
+              RecommendationCubit(RecommendationRepository())
+                ..loadRecommendations(),
         ),
       ],
       child: const _HomeBody(),
@@ -55,7 +49,7 @@ class _HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: const HomeAppBar(),
       body: SingleChildScrollView(
         child: Padding(
@@ -69,10 +63,7 @@ class _HomeBody extends StatelessWidget {
 
               SizedBox(height: 10.h),
 
-              Text(
-                "Today's Deals",
-                style: AppTextStyle.headlineMedium,
-              ),
+              Text("Today's Deals", style: AppTextStyle.headlineMedium),
 
               SizedBox(height: 12.h),
 
@@ -80,22 +71,17 @@ class _HomeBody extends StatelessWidget {
                 builder: (context, state) {
                   final isLoading = state is HomeLoading;
 
-                  final List<DealModel> deals =
-                      state is HomeSuccess ? state.deals : [];
+                  final List<DealModel> deals = state is HomeSuccess
+                      ? state.deals
+                      : [];
 
-                  return HomeDealsSlider(
-                    deals: deals,
-                    isLoading: isLoading,
-                  );
+                  return HomeDealsSlider(deals: deals, isLoading: isLoading);
                 },
               ),
 
               SizedBox(height: 10.h),
 
-              Text(
-                'Categories',
-                style: AppTextStyle.headlineMedium,
-              ),
+              Text('Categories', style: AppTextStyle.headlineMedium),
 
               SizedBox(height: 10.h),
 
@@ -103,11 +89,12 @@ class _HomeBody extends StatelessWidget {
                 builder: (context, state) {
                   final List<CategoryModel> categories =
                       state is CategorySuccess
-                          ? state.categories.data
-                          : DummyData.categories;
+                      ? state.categories.data
+                      : DummyData.categories;
 
-                  final selectedIndex =
-                      state is CategorySuccess ? state.selectedIndex : 0;
+                  final selectedIndex = state is CategorySuccess
+                      ? state.selectedIndex
+                      : 0;
 
                   return SizedBox(
                     height: 120.h,
@@ -120,8 +107,7 @@ class _HomeBody extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) =>
-                                CategoryView(initialIndex: index),
+                            builder: (_) => CategoryView(initialIndex: index),
                           ),
                         );
                       },
@@ -133,19 +119,14 @@ class _HomeBody extends StatelessWidget {
               // ✅ Recommended Section
               SizedBox(height: 20.h),
 
-              Text(
-                "Recommended For You",
-                style: AppTextStyle.headlineMedium,
-              ),
+              Text("Recommended For You", style: AppTextStyle.headlineMedium),
 
               SizedBox(height: 12.h),
 
               BlocBuilder<RecommendationCubit, RecommendationState>(
                 builder: (context, state) {
                   if (state is RecommendationLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is RecommendationSuccess) {
                     return GridView.builder(
                       shrinkWrap: true,
@@ -153,11 +134,11 @@ class _HomeBody extends StatelessWidget {
                       itemCount: state.meals.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 15,
-                        crossAxisSpacing: 15,
-                        childAspectRatio: 0.7,
-                      ),
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 15,
+                            crossAxisSpacing: 15,
+                            childAspectRatio: 0.7,
+                          ),
                       itemBuilder: (context, index) {
                         final meal = state.meals[index];
 
@@ -166,8 +147,9 @@ class _HomeBody extends StatelessWidget {
                           meal.categoryName,
                           meal.finalPrice.toString(),
                           meal.imageUrl,
-                          oldPrice:
-                              meal.hasOffer ? meal.price.toString() : null,
+                          oldPrice: meal.hasOffer
+                              ? meal.price.toString()
+                              : null,
                         );
                       },
                     );
@@ -210,9 +192,7 @@ Widget _buildProductItem(
       children: [
         Expanded(
           child: ClipRRect(
-            borderRadius: const BorderRadius.vertical(
-              top: Radius.circular(15),
-            ),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
             child: Image.network(
               imageUrl,
               fit: BoxFit.cover,
@@ -236,10 +216,7 @@ Widget _buildProductItem(
               ),
               Text(
                 weight,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
-                ),
+                style: const TextStyle(color: Colors.grey, fontSize: 12),
               ),
               Row(
                 children: [
@@ -264,25 +241,23 @@ Widget _buildProductItem(
                 ],
               ),
               Container(
-            width: double.infinity,
-            margin: const EdgeInsets.all(8),
-            height: 35,
-            child: ElevatedButton(
-              onPressed: () {
-                
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF003D61),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                width: double.infinity,
+                margin: const EdgeInsets.all(8),
+                height: 35,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF003D61),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  child: const Text(
+                    "Add to cart",
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
                 ),
               ),
-              child: const Text(
-                "Add to cart",
-                style: TextStyle(color: Colors.white, fontSize: 12),
-              ),
-            ),
-          ),
             ],
           ),
         ),

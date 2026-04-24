@@ -15,9 +15,10 @@ class CategoriesResponse {
     return CategoriesResponse(
       success: json['success'] ?? false,
       message: json['message'] ?? '',
-      data: (json['data'] as List<dynamic>?)
-          ?.map((e) => CategoryModel.fromJson(e))
-          .toList() ??
+      data:
+          (json['data'] as List<dynamic>?)
+              ?.map((e) => CategoryModel.fromJson(e))
+              .toList() ??
           [],
     );
   }

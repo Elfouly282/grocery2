@@ -5,12 +5,12 @@ class SubCategoriesModel {
     required this.subId,
     required this.name,
     required this.subSlug,
-     this.description,
-     this.image,
-     this.category,
-     this.order,
-     this.mealsCount,
-     this.createdAt,
+    this.description,
+    this.image,
+    this.category,
+    this.order,
+    this.mealsCount,
+    this.createdAt,
   });
 
   final String subId;
@@ -46,11 +46,11 @@ class SubCategoriesModel {
       image: json["image_url"],
       category: Category.fromJson(json["category"] ?? {}),
       order: json["order"]?.toString() ?? '',
-      mealsCount: json["meals_count"] is int 
-          ? json["meals_count"] 
+      mealsCount: json["meals_count"] is int
+          ? json["meals_count"]
           : int.tryParse(json["meals_count"]?.toString() ?? '0') ?? 0,
-      createdAt: json["created_at"] != null 
-          ? DateTime.parse(json["created_at"]) 
+      createdAt: json["created_at"] != null
+          ? DateTime.parse(json["created_at"])
           : DateTime.now(),
     );
   }

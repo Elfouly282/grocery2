@@ -20,15 +20,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           /// Left
           Row(
             children: [
-              Image.asset(
-                'assets/icons/app_bar_logo.png',
-                height: 24.h,
-              ),
+              Image.asset('assets/icons/app_bar_logo.png', height: 24.h),
               SizedBox(width: 10.w),
-              Image.asset(
-                'assets/icons/notification.png',
-                height: 22.h,
-              ),
+              Image.asset('assets/icons/notification.png', height: 22.h),
             ],
           ),
 
@@ -44,10 +38,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             child: Row(
               children: [
-                Image.asset(
-                  'assets/icons/map_point.png',
-                  height: 16.h,
-                ),
+                Image.asset('assets/icons/map_point.png', height: 16.h),
                 SizedBox(width: 6.w),
                 Expanded(
                   child: Text(
@@ -60,19 +51,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
                 SizedBox(width: 4.w),
-                Image.asset(
-                  'assets/icons/down_arrow.png',
-                  height: 14.h,
-                ),
+                Image.asset('assets/icons/down_arrow.png', height: 14.h),
               ],
             ),
           ),
 
           /// Cart
-          Image.asset(
-            'assets/icons/cart_icon.png',
-            height: 24.h,
-          ),
+          Image.asset('assets/icons/cart_icon.png', height: 24.h),
         ],
       ),
     );

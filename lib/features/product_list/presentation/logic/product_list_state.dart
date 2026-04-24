@@ -41,8 +41,7 @@ class ProductListState {
       subcategoriesRequestStatus == RequestStatusEnum.loading;
 
   /// Check if meals are loading
-  bool get isLoadingMeals =>
-      mealsRequestStatus == RequestStatusEnum.loading;
+  bool get isLoadingMeals => mealsRequestStatus == RequestStatusEnum.loading;
 
   /// Check if any error occurred
   bool get hasError =>

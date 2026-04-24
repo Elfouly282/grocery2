@@ -28,6 +28,7 @@ class CategoryModel {
       imageUrl: json['image_url'],
       mealsCount: json['meals_count'] ?? 0,
       sortOrder: json['sort_order'] ?? 0,
-      createdAt: DateTime.tryParse(json['created_at'] ?? '') ?? DateTime.now(),    );
+      createdAt: DateTime.tryParse(json['created_at'] ?? '') ?? DateTime.now(),
+    );
   }
 }

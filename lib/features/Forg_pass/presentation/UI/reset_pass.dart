@@ -93,7 +93,7 @@ class _ResetPassState extends State<ResetPass> {
                     if (!RegExp(r'[0-9]').hasMatch(value)) {
                       return 'Password must contain at least one number';
                     }
-                     
+
                     if (!RegExp(r'[A-Z]').hasMatch(value)) {
                       return 'Add uppercase letter';
                     }

@@ -38,7 +38,6 @@ class AppColor {
   static const Color textHint = Color(0xFFBDBDBD);
   static const Color textBlueDark = Color(0xFF014162);
 
-  static const Color activetab =Color(0xFF014162);
+  static const Color activetab = Color(0xFF014162);
+  static const Color text = Color(0xFF014162);
 }
-
-

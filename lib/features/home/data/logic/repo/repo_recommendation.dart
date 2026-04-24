@@ -1,6 +1,6 @@
 import 'package:grocery2/core/constants/api_constant.dart';
 import 'package:grocery2/core/constants/dio_helper.dart';
- import 'package:grocery2/features/home/data/model/recommended_model.dart';
+import 'package:grocery2/features/home/data/model/recommended_model.dart';
 
 class RecommendationRepository {
   // List<MealRecommendationModel> getRecommendations() {

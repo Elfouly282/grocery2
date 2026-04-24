@@ -1,6 +1,6 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery2/core/constants/preference_manager.dart';
+import 'package:grocery2/core/constants/storage_keys.dart';
 import '../../data/repo/repo.dart';
 import 'login_state.dart';
 
@@ -8,16 +8,14 @@ class AuthCubit extends Cubit<AuthStates> {
   final AuthRepo authRepo;
   final PreferenceManager preferenceManager;
 
-  AuthCubit(this.authRepo, {required this.preferenceManager}) : super(AuthInitialState());
+  AuthCubit(this.authRepo, {required this.preferenceManager})
+    : super(AuthInitialState());
 
   Future<void> login({required String email, required String password}) async {
     emit(AuthLoadingState());
 
     try {
-      final user = await authRepo.login(
-        email: email,
-        password: password,
-      );
+      final user = await authRepo.login(email: email, password: password);
 
       if (user != null) {
         // Save the login status to SharedPreferences
@@ -27,7 +25,6 @@ class AuthCubit extends Cubit<AuthStates> {
         emit(AuthErrorState("UnExpected Error Please, try again"));
       }
     } catch (e) {
-      
       emit(AuthErrorState(e.toString()));
     }
   }
@@ -38,6 +35,7 @@ class AuthCubit extends Cubit<AuthStates> {
       // Clear the login status
       await preferenceManager.setBool('isLoggedIn', false);
       // Clear the authentication token
+      await preferenceManager.remove(StorageKeys.authToken);
       await preferenceManager.remove('token');
       emit(AuthInitialState());
     } catch (e) {

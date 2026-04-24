@@ -19,11 +19,11 @@ class SmartListEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        title,
-        description,
-        image,
-        itemCount,
-        createdAt,
-      ];
+    id,
+    title,
+    description,
+    image,
+    itemCount,
+    createdAt,
+  ];
 }

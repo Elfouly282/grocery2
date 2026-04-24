@@ -85,10 +85,7 @@ class AppButton extends StatelessWidget {
       );
     }
 
-    final textWidget = Text(
-      text,
-      style: textStyle ?? AppTextStyle.titleMedium,
-    );
+    final textWidget = Text(text, style: textStyle ?? AppTextStyle.titleMedium);
 
     if (icon != null) {
       return Row(

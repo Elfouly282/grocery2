@@ -40,9 +40,7 @@ class SubCategoriesHorizontalList extends StatelessWidget {
                     : AppColor.white,
                 borderRadius: BorderRadius.circular(20.r),
                 border: Border.all(
-                  color: isSelected
-                      ? AppColor.primaryColor
-                      : AppColor.grey,
+                  color: isSelected ? AppColor.primaryColor : AppColor.grey,
                   width: isSelected ? 1.5 : 0.5,
                 ),
                 boxShadow: [
@@ -58,23 +56,21 @@ class SubCategoriesHorizontalList extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12.r),
-                    child: category.imageUrl != null &&
-                        category.imageUrl!.isNotEmpty
+                    child:
+                        category.imageUrl != null &&
+                            category.imageUrl!.isNotEmpty
                         ? Image.network(
-                      category.imageUrl!,
-                      height: 45.h,
-                      width: 63.w,
-                      fit: BoxFit.cover,
-                    )
+                            category.imageUrl!,
+                            height: 45.h,
+                            width: 63.w,
+                            fit: BoxFit.cover,
+                          )
                         : Container(
-                      height: 45.h,
-                      width: 63.w,
-                      color: Colors.grey.shade300,
-                      child: Icon(
-                        CupertinoIcons.photo,
-                        size: 20.w,
-                      ),
-                    ),
+                            height: 45.h,
+                            width: 63.w,
+                            color: Colors.grey.shade300,
+                            child: Icon(CupertinoIcons.photo, size: 20.w),
+                          ),
                   ),
                   SizedBox(height: 8.h),
                   Text(
@@ -83,9 +79,7 @@ class SubCategoriesHorizontalList extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: AppTextStyle.titleMedium16.copyWith(
-                      color: isSelected
-                          ? AppColor.primaryColor
-                          : Colors.black,
+                      color: isSelected ? AppColor.primaryColor : Colors.black,
                       fontWeight: isSelected
                           ? FontWeight.w800
                           : FontWeight.normal,

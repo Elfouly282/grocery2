@@ -5,7 +5,7 @@ import 'package:grocery2/features/product_list/data/model/subcategories_model.da
 abstract class BaseSubcategoriesRepository {
   Future<List<SubCategoriesModel>?> getSubCategories();
 
-  Future<DataModel> getMeals({required int id , int page = 1});
+  Future<DataModel> getMeals({required int id, int page = 1});
 }
 
 class SubcategoriesRepository extends BaseSubcategoriesRepository {
@@ -24,8 +24,8 @@ class SubcategoriesRepository extends BaseSubcategoriesRepository {
   }
 
   @override
-  Future<DataModel> getMeals({required int id , int page = 1}) {
-    final response = subcategoriesApiServices.getMeals( id: id , page: page);
+  Future<DataModel> getMeals({required int id, int page = 1}) {
+    final response = subcategoriesApiServices.getMeals(id: id, page: page);
     try {
       return response;
     } catch (e) {

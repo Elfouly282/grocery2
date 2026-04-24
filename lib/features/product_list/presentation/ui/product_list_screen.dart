@@ -17,26 +17,38 @@ class ProductListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ProductListCubit>(
-      create: (context) =>
-          ProductListCubit(SubcategoriesRepository(SubCategoriesDatasource()), categoryId: categoryId)
-            ..fetchSubcategoriesAndMeals(), // Automatically fetch data after cubit creation
+      create: (context) => ProductListCubit(
+        SubcategoriesRepository(SubCategoriesDatasource()),
+        categoryId: categoryId,
+      )..fetchSubcategoriesAndMeals(), // Automatically fetch data after cubit creation
       child: Scaffold(
         backgroundColor: AppColor.backgroundColor,
         appBar: AppBar(
           backgroundColor: AppColor.white,
           elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: AppColor.black, size: AppSizes.w20),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: AppColor.black,
+              size: AppSizes.w20,
+            ),
             onPressed: () => Navigator.pop(context),
           ),
           titleSpacing: 0,
           actions: [
             IconButton(
-              icon: Icon(Icons.search_sharp, color: AppColor.blueDark, size: AppSizes.r30),
+              icon: Icon(
+                Icons.search_sharp,
+                color: AppColor.blueDark,
+                size: AppSizes.r30,
+              ),
               onPressed: () {},
             ),
             IconButton(
-              icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
+              icon: const Icon(
+                Icons.shopping_cart_outlined,
+                color: Colors.black,
+              ),
               onPressed: () {},
             ),
           ],
@@ -67,7 +79,7 @@ class ProductListScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                  SubcategoriesListWidget(id: categoryId),
+                SubcategoriesListWidget(id: categoryId),
                 if (state.mealsRequestStatus == RequestStatusEnum.loading &&
                     state.meals.isEmpty)
                   const SliverFillRemaining(
@@ -76,7 +88,9 @@ class ProductListScreen extends StatelessWidget {
                 else if (state.mealsRequestStatus == RequestStatusEnum.error &&
                     state.meals.isEmpty)
                   SliverFillRemaining(
-                    child: Center(child: Text(state.errorMessage ?? "An error occurred")),
+                    child: Center(
+                      child: Text(state.errorMessage ?? "An error occurred"),
+                    ),
                   )
                 else if (state.mealsRequestStatus == RequestStatusEnum.loaded &&
                     state.meals.isEmpty)

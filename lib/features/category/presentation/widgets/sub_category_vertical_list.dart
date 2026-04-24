@@ -5,7 +5,7 @@ import '../../data/models/categories_meals/category_meals_model.dart';
 
 class CategoriesVerticalList extends StatelessWidget {
   final Meal meal;
-   final Function() ontp;
+  final Function() ontp;
   const CategoriesVerticalList({
     required this.ontp,
     super.key,
@@ -15,7 +15,7 @@ class CategoriesVerticalList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:  ontp,
+      onTap: ontp,
       child: Container(
         width: 365.w,
         height: 100.h,

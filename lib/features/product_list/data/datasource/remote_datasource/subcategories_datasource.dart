@@ -9,8 +9,6 @@ abstract class BaseSubCategoriesDatasource {
   Future<List<SubCategoriesModel>?> getSubCategories();
 
   Future<DataModel> getMeals({required int id, int page = 1});
-
-
 }
 
 class SubCategoriesDatasource extends BaseSubCategoriesDatasource {
@@ -21,7 +19,9 @@ class SubCategoriesDatasource extends BaseSubCategoriesDatasource {
     try {
       final response = await dio.get(ApiConstant.subcategories);
       return List<SubCategoriesModel>.from(
-        (response.data["data"] as List).map((e) => SubCategoriesModel.fromJson(e)),
+        (response.data["data"] as List).map(
+          (e) => SubCategoriesModel.fromJson(e),
+        ),
       );
     } on DioException catch (e) {
       _handleDioException(e);
@@ -32,13 +32,11 @@ class SubCategoriesDatasource extends BaseSubCategoriesDatasource {
   }
 
   @override
-  Future<DataModel> getMeals({required int id, int page =1} ) async {
+  Future<DataModel> getMeals({required int id, int page = 1}) async {
     try {
       final response = await dio.get("${ApiConstant.meals(id)}?page=$page");
       print(response.data);
-      return DataModel.fromJson(
-        response.data,
-      );
+      return DataModel.fromJson(response.data);
     } on DioException catch (e) {
       _handleDioException(e);
       rethrow;

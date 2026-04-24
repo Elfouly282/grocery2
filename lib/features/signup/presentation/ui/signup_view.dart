@@ -20,14 +20,12 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
-
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-
 
   @override
   void dispose() {
@@ -38,8 +36,6 @@ class _SignupViewState extends State<SignupView> {
     _confirmPasswordController.dispose();
     super.dispose();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +105,6 @@ class _SignupViewState extends State<SignupView> {
                                 inputFormatters: [
                                   FilteringTextInputFormatter.digitsOnly,
                                   LengthLimitingTextInputFormatter(11),
-
                                 ],
                                 keyboardType: TextInputType.phone,
                                 validator: AppValidators.phone,
@@ -130,7 +125,8 @@ class _SignupViewState extends State<SignupView> {
                                   'assets/icons/user_icon.png',
                                   height: 24.h,
                                   width: 24.w,
-                                ), keyboardType: TextInputType.text,
+                                ),
+                                keyboardType: TextInputType.text,
                               ),
                               SizedBox(height: 8.h),
                               CustomTextFormField(
@@ -142,7 +138,8 @@ class _SignupViewState extends State<SignupView> {
                                   'assets/icons/lock.png',
                                   height: 24.h,
                                   width: 24.w,
-                                ), keyboardType: TextInputType.visiblePassword,
+                                ),
+                                keyboardType: TextInputType.visiblePassword,
                               ),
                               SizedBox(height: 8.h),
                               CustomTextFormField(
@@ -163,18 +160,19 @@ class _SignupViewState extends State<SignupView> {
                               ),
                               SizedBox(height: 12.h),
                               BlocBuilder<SignupCubit, SignupState>(
-
                                 builder: (context, state) {
                                   final cubit = context.read<SignupCubit>();
 
                                   final isLoading = state is SignupLoading;
                                   return CheckboxWithButton(
-                                    isChecked: cubit.isAccepted,                                    isLoading: isLoading,
+                                    isChecked: cubit.isAccepted,
+                                    isLoading: isLoading,
                                     onChanged: (value) {
                                       cubit.toggleAccepted(value ?? false);
                                     },
                                     onPressed: () {
-                                      if (!_formKey.currentState!.validate()) return;
+                                      if (!_formKey.currentState!.validate())
+                                        return;
 
                                       if (!cubit.isAccepted) {
                                         CustomSnackBar().errorBar(
@@ -188,12 +186,12 @@ class _SignupViewState extends State<SignupView> {
                                         request: SignupRequest(
                                           username: _nameController.text,
                                           email: _emailController.text,
-                                          phone: cubit.
-                                          formatPhone(_phoneController.text),
+                                          phone: cubit.formatPhone(
+                                            _phoneController.text,
+                                          ),
                                           password: _passwordController.text,
                                           agreeTerms: cubit.isAccepted,
-                                            ),
-
+                                        ),
                                       );
                                     },
                                   );
@@ -201,8 +199,7 @@ class _SignupViewState extends State<SignupView> {
                               ),
                               SizedBox(height: 10.h),
                               Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     'Already have an account?',
@@ -210,7 +207,6 @@ class _SignupViewState extends State<SignupView> {
                                   ),
                                   TextButton(
                                     onPressed: () {
-
                                       Navigator.pop(context);
                                     },
                                     child: Text(

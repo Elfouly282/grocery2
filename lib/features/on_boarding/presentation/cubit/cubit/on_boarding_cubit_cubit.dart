@@ -9,7 +9,4 @@ class OnBoardingCubitCubit extends Cubit<OnBoardingCubitState> {
   void pageChanged(int index) {
     emit(OnBoardingCubitPageChanged(index));
   }
-
 }
-
- 

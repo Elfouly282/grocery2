@@ -19,6 +19,7 @@ class DealsRepoImpl {
       throw Exception(_handleError(e));
     }
   }
+
   String _handleError(dynamic error) {
     if (error is DioException) {
       return error.response?.data['message'] ?? 'Server error';

@@ -99,7 +99,8 @@ class _CategoryScreenBody extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: isDetailsLoading ? 4 : details.length,
                       itemBuilder: (context, index) {
-                        if (isDetailsLoading || details.isEmpty) { // Added details.isEmpty check for skeleton
+                        if (isDetailsLoading || details.isEmpty) {
+                          // Added details.isEmpty check for skeleton
                           return const CategoryMealListSkeleton();
                         }
 
@@ -111,7 +112,8 @@ class _CategoryScreenBody extends StatelessWidget {
                               MaterialPageRoute(
                                 builder: (context) {
                                   return ProductListScreen(
-                                    categoryId:details[index].id, // Pass selected category ID
+                                    categoryId: details[index]
+                                        .id, // Pass selected category ID
                                   );
                                 },
                               ),

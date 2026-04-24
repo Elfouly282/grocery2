@@ -14,8 +14,6 @@ class AppSizes {
   static final double sp40 = 40.sp;
   static final double sp42 = 42.sp;
 
-
-
   /// height
   static final double h2 = 2.h;
   static final double h4 = 4.h;
@@ -78,7 +76,6 @@ class AppSizes {
   static final double w215 = 215.w;
   static final double w240 = 240.w;
 
-
   /// radius
   static final double r4 = 4.r;
   static final double r8 = 8.r;
@@ -89,5 +86,4 @@ class AppSizes {
   static final double r30 = 30.r;
   static final double r60 = 60.r;
   static final double r100 = 100.r;
-
 }

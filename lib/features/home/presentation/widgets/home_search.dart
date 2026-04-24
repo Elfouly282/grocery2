@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -7,7 +6,7 @@ class HomeSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return     Container(
+    return Container(
       height: 42.h,
       padding: EdgeInsets.symmetric(horizontal: 12.w),
       decoration: BoxDecoration(
@@ -27,21 +26,11 @@ class HomeSearch extends StatelessWidget {
               ),
             ),
           ),
-          Icon(Icons.qr_code_scanner,
-              size: 22.sp, color: Colors.blueGrey),
+          Icon(Icons.qr_code_scanner, size: 22.sp, color: Colors.blueGrey),
           SizedBox(width: 10.w),
           Icon(Icons.mic_none, size: 22.sp, color: Colors.blueGrey),
         ],
       ),
     );
-
   }
 }
-
-
-
-
-
-
-
-

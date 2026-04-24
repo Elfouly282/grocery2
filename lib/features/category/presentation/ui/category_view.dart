@@ -111,7 +111,9 @@ class _CategoryBody extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return ProductListScreen(categoryId: details[index].id);
+                                  return ProductListScreen(
+                                    categoryId: details[index].id,
+                                  );
                                 },
                               ),
                             );

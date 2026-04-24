@@ -1,10 +1,9 @@
-
 import '../../data/model/deals_model.dart';
 
 class DummyDeals {
   static List<DealModel> deals = List.generate(
     1,
-        (index) => DealModel(
+    (index) => DealModel(
       id: index,
       title: 'Loading Deal',
       description: '',

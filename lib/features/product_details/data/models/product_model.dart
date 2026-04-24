@@ -36,10 +36,13 @@ class ProductModel extends ProductEntity {
       title: json['title'],
       slug: json['slug'] ?? "",
       description: json['description'],
-      image: (json['image_url'] ?? "").toString().trim(), // Ensure image URL is always a non-null String
+      image: (json['image_url'] ?? "")
+          .toString()
+          .trim(), // Ensure image URL is always a non-null String
       offerTitle: json['offer_title'],
       expiryDate: json['expiry_date'] != null
-          ? DateTime.tryParse(json['expiry_date'] as String) ?? DateTime(1970, 1, 1)
+          ? DateTime.tryParse(json['expiry_date'] as String) ??
+                DateTime(1970, 1, 1)
           : DateTime(1970, 1, 1),
       isExpired: json['is_expired'] ?? false,
       price: (json['price']).toDouble(),

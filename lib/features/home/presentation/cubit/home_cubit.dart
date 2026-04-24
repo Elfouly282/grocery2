@@ -31,10 +31,7 @@ class HomeCubit extends Cubit<HomeState> {
           .map((e) => CategoryModel.fromJson(e))
           .toList();
 
-      emit(HomeSuccess(
-        deals: deals,
-        categories: categories,
-      ));
+      emit(HomeSuccess(deals: deals, categories: categories));
     } catch (e) {
       emit(HomeError(e.toString()));
     }

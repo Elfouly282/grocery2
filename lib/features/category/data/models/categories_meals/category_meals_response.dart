@@ -24,17 +24,12 @@ class DetailsMealsData {
   final Category category;
   final List<Meal> meals;
 
-  DetailsMealsData({
-    required this.category,
-    required this.meals,
-  });
+  DetailsMealsData({required this.category, required this.meals});
 
   factory DetailsMealsData.fromJson(Map<String, dynamic> json) {
     return DetailsMealsData(
       category: Category.fromJson(json['category']),
-      meals: (json['meals'] as List)
-          .map((e) => Meal.fromJson(e))
-          .toList(),
+      meals: (json['meals'] as List).map((e) => Meal.fromJson(e)).toList(),
     );
   }
 }

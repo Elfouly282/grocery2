@@ -10,7 +10,8 @@ void showSuccessBottomSheet(BuildContext context) {
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
     ),
-    builder: (sheetContext) { // نستخدم sheetContext هنا للتمييز
+    builder: (sheetContext) {
+      // نستخدم sheetContext هنا للتمييز
       return SafeArea(
         child: Padding(
           padding: EdgeInsets.only(
@@ -41,7 +42,7 @@ void showSuccessBottomSheet(BuildContext context) {
                 ],
               ),
               const SizedBox(height: 30),
-              
+
               // أيقونة النجاح
               Container(
                 padding: const EdgeInsets.all(15),
@@ -52,7 +53,7 @@ void showSuccessBottomSheet(BuildContext context) {
                 child: const Icon(Icons.check, color: Colors.green, size: 50),
               ),
               const SizedBox(height: 25),
-              
+
               const Text(
                 "Password reset",
                 style: TextStyle(
@@ -62,14 +63,14 @@ void showSuccessBottomSheet(BuildContext context) {
                 ),
               ),
               const SizedBox(height: 15),
-              
+
               const Text(
                 "You have successfully reset your password.\nPlease use your new password when logging in",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 14, color: Colors.grey, height: 1.5),
               ),
               const SizedBox(height: 30),
-              
+
               // زرار الـ Login
               SizedBox(
                 width: double.infinity,
@@ -85,11 +86,13 @@ void showSuccessBottomSheet(BuildContext context) {
                   onPressed: () {
                     // 1. اقفل الـ Bottom Sheet
                     Navigator.pop(sheetContext);
-                    
+
                     // 2. اذهب لصفحة الـ Login وشيل كل اللي فات من الـ Stack
                     Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => const LoginScreen()),
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
                       (route) => false,
                     );
                   },
