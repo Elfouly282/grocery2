@@ -19,7 +19,7 @@ class HomeCubit extends Cubit<HomeState> {
       );
 
       final categoriesResponse = await DioHelper.get(
-        path: ApiConstant.subcategories,
+        path: ApiConstant.category,
         withAuth: false,
       );
 

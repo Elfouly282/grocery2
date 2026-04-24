@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:grocery2/core/constants/preference_manager.dart';
+import 'package:grocery2/features/Naviagation/Navigator.dart';
 import 'package:grocery2/features/on_boarding/presentation/UI/first_board.dart';
 import 'package:grocery2/features/home/presentation/ui/home_view.dart';
-class SplashView extends StatefulWidget {
-  const SplashView({super.key});
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<SplashView> createState() => _SplashViewState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashViewState extends State<SplashView>
+class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
+
   late AnimationController _controller;
 
   late Animation<double> _appleScale;
@@ -46,7 +49,10 @@ class _SplashViewState extends State<SplashView>
         weight: 50,
       ),
     ]).animate(
-      CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.7)),
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.7),
+      ),
     );
 
     _shadowOpacity = Tween<double>(begin: 0.4, end: 0.0).animate(
@@ -67,16 +73,20 @@ class _SplashViewState extends State<SplashView>
 
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        // Check if the user is logged in
-        // Assuming PreferenceManager has a method like 'isLoggedIn' or 'getAuthToken'
-        // For this example, we'll use a placeholder 'isLoggedIn' boolean.
-        // You might need to adjust this based on how your PreferenceManager stores login status.
-        final bool isLoggedIn = PreferenceManager().getBool('isLoggedIn') ?? false;
+
+        final bool isLoggedIn =
+            PreferenceManager().getBool('isLoggedIn') ?? false;
 
         if (isLoggedIn) {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomeView()));
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) =>   Navigation()),
+          );
         } else {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => FirstBoard()));
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => FirstBoard()),
+          );
         }
       }
     });
@@ -94,6 +104,8 @@ class _SplashViewState extends State<SplashView>
               alignment: Alignment.center,
               clipBehavior: Clip.none,
               children: [
+
+                /// Shadow
                 Positioned(
                   bottom: -20,
                   child: Opacity(
@@ -107,6 +119,8 @@ class _SplashViewState extends State<SplashView>
                     ),
                   ),
                 ),
+
+                /// Apple + Plus
                 Transform.translate(
                   offset: Offset(0, _appleMove.value),
                   child: Transform.scale(
@@ -115,10 +129,14 @@ class _SplashViewState extends State<SplashView>
                       alignment: Alignment.center,
                       clipBehavior: Clip.none,
                       children: [
+
+                        /// Apple
                         Image.asset(
                           'assets/images/apple.png',
                           width: 130,
                         ),
+
+                        /// Plus Icon
                         Positioned(
                           right: -12,
                           top: 18,

@@ -10,7 +10,7 @@ class CategoryRepoImpl {
 
   Future<CategoriesResponse> getSubCategories() async {
     try {
-      final response = await DioHelper.get(path: ApiConstant.subcategories);
+      final response = await DioHelper.get(path: ApiConstant.category);
       return CategoriesResponse.fromJson(response.data);
     } on DioException catch (e) {
       throw Exception(e.response?.data['message'] ?? 'Network error');

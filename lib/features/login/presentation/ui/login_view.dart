@@ -15,6 +15,7 @@ class LoginView extends StatelessWidget {
         AuthRepoImpl(
           preferenceManager: PreferenceManager(),
         ),
+        preferenceManager: PreferenceManager(),
       ),
       child: const LoginScreen(),
     );

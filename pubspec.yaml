@@ -11,46 +11,39 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # HTTP and API
+  dio: ^5.9.2
+  pretty_dio_logger: ^1.4.0
 
+  # Navigation
+  go_router: ^17.2.1
 
+  # Utilities
+  equatable: ^2.0.8
+  flutter_screenutil: ^5.9.3
   cupertino_icons: ^1.0.8
   # Phone Number
   flutter_intl_phone_field: ^0.0.7
   intl_phone_field: ^3.2.0
-  dio: ^5.9.2
-  pretty_dio_logger: ^1.4.0
   shared_preferences: ^2.5.5
   bloc: ^9.2.0
   flutter_bloc: ^9.1.1
-  go_router: ^17.2.1
   get_it: ^9.2.1
-  flutter_screenutil: ^5.9.3
-
-  # HTTP and API
-
-  # Local Storage
-
-  # State Management
-
-  # Navigation
-
-  # Utilities
-  equatable: ^2.0.5
-  google_fonts: ^6.3.2
+  
   gap: ^3.0.1
   flutter_secure_storage: ^10.0.0
+  google_fonts: ^6.2.1
   skeletonizer: ^2.1.3
   carousel_slider: ^5.1.2
-
-
+  #for otp input
+  pinput: ^5.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 
   flutter_lints: ^6.0.0
-  #for otp input
-  pinput: ^5.0.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

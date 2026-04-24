@@ -40,7 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
       create: (context) => AuthCubit(
         AuthRepoImpl(
           preferenceManager: PreferenceManager(),
-        ),  
+        ),
+        preferenceManager: PreferenceManager(),
       ),
       child: GestureDetector(
         onTap: FocusScope.of(context).unfocus,

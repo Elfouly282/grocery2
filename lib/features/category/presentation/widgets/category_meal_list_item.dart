@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/constants/app_color.dart';
 import '../../data/models/categories_meals/category_meals_model.dart';
 
-class CategoriesVerticalList extends StatelessWidget {
+class CategoryMealListItem extends StatelessWidget {
   final Meal meal;
    final Function() ontp;
-  const CategoriesVerticalList({
+  const CategoryMealListItem({
     required this.ontp,
     super.key,
     required this.meal,

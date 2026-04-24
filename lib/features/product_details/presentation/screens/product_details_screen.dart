@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:grocery2/core/di/get_it.dart';
 import 'package:grocery2/features/product_details/presentation/widgets/product_details.dart';
 
 import '../../../../core/constants/custom_app_bar.dart';
@@ -10,21 +11,23 @@ import '../widgets/product_bottom_bar.dart';
 import '../widgets/product_description.dart';
 import '../widgets/product_image.dart';
 
-class ProductDetailsScreen extends StatefulWidget {
+class ProductDetailsScreen extends StatelessWidget {
   final int productId;
 
   const ProductDetailsScreen({super.key, required this.productId});
 
   @override
-  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+  Widget build(BuildContext context) {
+    return BlocProvider<ProductDetailsCubit>(
+      create: (_) =>
+          getIt<ProductDetailsCubit>()..getProductDetails(productId),
+      child: const _ProductDetailsView(),
+    );
+  }
 }
 
-class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<ProductDetailsCubit>().getProductDetails(widget.productId);
-  }
+class _ProductDetailsView extends StatelessWidget {
+  const _ProductDetailsView();
 
   @override
   Widget build(BuildContext context) {
