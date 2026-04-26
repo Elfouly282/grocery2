@@ -5,13 +5,7 @@ class User {
   final String? phone;
   final String? createdAt;
 
-  User({
-    this.id,
-    this.username,
-    this.email,
-    this.phone,
-    this.createdAt,
-  });
+  User({this.id, this.username, this.email, this.phone, this.createdAt});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(

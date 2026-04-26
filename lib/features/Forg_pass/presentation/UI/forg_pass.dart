@@ -186,15 +186,15 @@ class _ForgPassState extends State<ForgPass> {
                       try {
                         final response = await DioHelper.post(
                           path: '/auth/forgot-password',
-                          data: {
-                            'identifier':
-                                valueToSend, 
-                          },
+                          data: {'identifier': valueToSend},
                         );
 
                         if (response.statusCode == 200) {
-                         CustomSnackBar().successBar(context, "OTP sent successfully!");
-                          await Future.delayed(Duration(milliseconds  : 200));
+                          CustomSnackBar().successBar(
+                            context,
+                            "OTP sent successfully!",
+                          );
+                          await Future.delayed(Duration(milliseconds: 200));
                           Navigator.push(
                             context,
                             MaterialPageRoute(

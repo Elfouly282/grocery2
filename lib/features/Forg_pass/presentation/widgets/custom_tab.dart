@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:grocery2/core/constants/app_color.dart' show AppColor;
 
@@ -26,13 +25,13 @@ class CustomTab extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-           title,
-           style: TextStyle(
+            title,
+            style: TextStyle(
               color: isActive ? Colors.white : Colors.black,
-             fontWeight: FontWeight.bold,
-             fontSize: isActive ? 16 : 14,  
-           ),
-                      ),
+              fontWeight: FontWeight.bold,
+              fontSize: isActive ? 16 : 14,
+            ),
+          ),
         ),
       ),
     );

@@ -4,12 +4,17 @@ class ApiConstant {
 
   /// API endpoints
   static const String login = '/auth/login';
-  static const String signup = '/auth/signup';
   static const String logout = '/auth/logout';
-  static const String getProfile = '/user/profile';
+  static const String getProfile = '/profile';
+  static const String signup = '/auth/register';
+  static const String category = '/categories';
+  static String detailsOfSubcategories(int id) => '/categories/$id/meals';
+  static const String todaysdeals = '/meals/today';
+  static const String todayDeals = '/meals/today';
   static const String updateProfile = '/user/profile/update';
   static const String getProducts = '/products';
   static const String getProductDetails = '/products/:di';
+  static const String getmeals = '/meals/:id';
   static const String addToCart = '/cart/add';
   static const String removeFromCart = '/cart/remove';
   static const String getCart = '/cart';
@@ -19,6 +24,13 @@ class ApiConstant {
   static const String sendOtp = '/auth/forgot-password';
   static const String verifyOtp = '/auth/verify-otp';
   static const String resetPassword = '/auth/reset-password';
+
+  /// API endpoints
+  static const String subcategories = '/subcategories';
+
+  static String meals(int subcategoryId) {
+    return "/subcategories/$subcategoryId/meals";
+  }
 
   /// Timeout duration in seconds
   static const int connectTimeout = 30;

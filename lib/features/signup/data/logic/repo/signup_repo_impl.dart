@@ -5,9 +5,7 @@ import '../../models/SignupResponse.dart';
 import 'package:dio/dio.dart';
 
 class SignupRepoImpl {
-  Future<SignupResponse> signup({
-    required SignupRequest request,
-  }) async {
+  Future<SignupResponse> signup({required SignupRequest request}) async {
     try {
       final response = await DioHelper.post(
         path: ApiConstant.signup,

@@ -31,7 +31,7 @@ class CustomTextFormField extends StatefulWidget {
     super.key,
     required this.controller,
     required this.keyboardType,
-     this.validator,
+    this.validator,
     this.hintText,
     this.borderRadius = 8,
     this.isPassword = false,
@@ -45,11 +45,10 @@ class CustomTextFormField extends StatefulWidget {
     this.inputFormatters,
   });
   @override
-  State<CustomTextFormField> createState() =>
-      _CustomTextFormFieldState();
+  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
-class _CustomTextFormFieldState
-    extends State<CustomTextFormField> {
+
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
   bool isObscure = true;
   @override
   Widget build(BuildContext context) {
@@ -65,43 +64,34 @@ class _CustomTextFormFieldState
       onChanged: widget.onChanged,
       decoration: InputDecoration(
         hintText: widget.hintText,
-        hintStyle: AppTextStyle.bodyMedium.copyWith(
-          color: AppColor.grey,
-        ),
+        hintStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.grey),
         errorText: widget.errorText,
         prefixIcon: widget.prefixIcon,
         prefixText: widget.prefixText,
         suffixIcon: widget.isPassword
             ? IconButton(
-          icon: Icon(
-            isObscure
-                ? CupertinoIcons.eye_slash_fill
-                : Icons.visibility_outlined,
-          ),
-          onPressed: () {
-            setState(() {
-              isObscure = !isObscure;
-            });
-          },
-        )
+                icon: Icon(
+                  isObscure
+                      ? CupertinoIcons.eye_slash_fill
+                      : Icons.visibility_outlined,
+                ),
+                onPressed: () {
+                  setState(() {
+                    isObscure = !isObscure;
+                  });
+                },
+              )
             : widget.suffixIcon,
         border: OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(widget.borderRadius),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide(
-            color: AppColor.primaryColor,
-          ),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderSide: BorderSide(color: AppColor.primaryColor),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(widget.borderRadius),
-          borderSide: BorderSide(
-            color: AppColor.grey,
-          ),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
+          borderSide: BorderSide(color: AppColor.grey),
         ),
       ),
     );

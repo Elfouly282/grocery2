@@ -1,4 +1,3 @@
-
 import '../../data/logic/models/model.dart';
 
 sealed class AuthStates {}

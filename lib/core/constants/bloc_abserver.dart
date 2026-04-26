@@ -1,16 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 
-
 class AppBlocObserver extends BlocObserver {
   @override
   void onCreate(BlocBase bloc) {
     super.onCreate(bloc);
 
-    AppLogger.info(
-      message: 'Created',
-      tag: bloc.runtimeType.toString(),
-    );
+    AppLogger.info(message: 'Created', tag: bloc.runtimeType.toString());
   }
 
   @override
@@ -18,8 +14,7 @@ class AppBlocObserver extends BlocObserver {
     super.onChange(bloc, change);
 
     AppLogger.debug(
-      message:
-      'State Change: ${change.currentState} → ${change.nextState}',
+      message: 'State Change: ${change.currentState} → ${change.nextState}',
       tag: bloc.runtimeType.toString(),
     );
   }
@@ -29,7 +24,8 @@ class AppBlocObserver extends BlocObserver {
     super.onTransition(bloc, transition);
 
     AppLogger.info(
-      message: '''
+      message:
+          '''
 Event : ${transition.event}
 From  : ${transition.currentState}
 To    : ${transition.nextState}
@@ -39,11 +35,7 @@ To    : ${transition.nextState}
   }
 
   @override
-  void onError(
-      BlocBase bloc,
-      Object error,
-      StackTrace stackTrace,
-      ) {
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     AppLogger.error(
       message: 'Error: $error',
       stackTrace: stackTrace,
@@ -55,53 +47,30 @@ To    : ${transition.nextState}
 
   @override
   void onClose(BlocBase bloc) {
-    AppLogger.warning(
-      message: 'Closed',
-      tag: bloc.runtimeType.toString(),
-    );
+    AppLogger.warning(message: 'Closed', tag: bloc.runtimeType.toString());
 
     super.onClose(bloc);
   }
 }
 
-
-enum LogLevel {
-  debug,
-  info,
-  warning,
-  error,
-}
-
+enum LogLevel { debug, info, warning, error }
 
 class LogConfig {
   static bool enableLogs = !kReleaseMode;
 }
 
-
 class AppLogger {
   /// Public methods
   static void debug({required String message, String? tag}) {
-    _log(
-      message: message,
-      level: LogLevel.debug,
-      tag: tag,
-    );
+    _log(message: message, level: LogLevel.debug, tag: tag);
   }
 
   static void info({required String message, String? tag}) {
-    _log(
-      message: message,
-      level: LogLevel.info,
-      tag: tag,
-    );
+    _log(message: message, level: LogLevel.info, tag: tag);
   }
 
   static void warning({required String message, String? tag}) {
-    _log(
-      message: message,
-      level: LogLevel.warning,
-      tag: tag,
-    );
+    _log(message: message, level: LogLevel.warning, tag: tag);
   }
 
   static void error({
@@ -137,7 +106,8 @@ class AppLogger {
     final buffer = StringBuffer();
 
     buffer.writeln(
-        '$emoji [$time] [${level.name.toUpperCase()}]${tag != null ? ' [$tag]' : ''}');
+      '$emoji [$time] [${level.name.toUpperCase()}]${tag != null ? ' [$tag]' : ''}',
+    );
     buffer.writeln(message);
 
     /// Show stacktrace only in debug mode
@@ -145,12 +115,8 @@ class AppLogger {
       buffer.writeln('StackTrace:\n$stackTrace');
     }
 
-    buffer.writeln(
-        '────────────────────────────────────────────────────────');
+    buffer.writeln('────────────────────────────────────────────────────────');
 
-    debugPrint(
-      buffer.toString(),
-      wrapWidth: 1024,
-    );
+    debugPrint(buffer.toString(), wrapWidth: 1024);
   }
 }

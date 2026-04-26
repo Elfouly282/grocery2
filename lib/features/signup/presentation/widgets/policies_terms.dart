@@ -30,9 +30,7 @@ class CheckboxWithButton extends StatelessWidget {
               onChanged: onChanged,
               activeColor: AppColor.primaryColor,
             ),
-            const Expanded(
-              child: Text('I agree to the policies and terms'),
-            ),
+            const Expanded(child: Text('I agree to the policies and terms')),
           ],
         ),
 

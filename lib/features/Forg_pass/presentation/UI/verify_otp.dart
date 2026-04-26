@@ -72,7 +72,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 defaultPinTheme: defaultPinTheme,
                 focusedPinTheme: focusedPinTheme,
                 onChanged: (value) {
-                  setState(() {});  
+                  setState(() {});
                 },
                 validator: (s) {
                   return null;
@@ -136,7 +136,12 @@ class _OTPScreenState extends State<OTPScreen> {
                         );
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ResetPass( receiver: widget.receiver, otp: otpCode)),
+                          MaterialPageRoute(
+                            builder: (context) => ResetPass(
+                              receiver: widget.receiver,
+                              otp: otpCode,
+                            ),
+                          ),
                         );
                       }
                     } on DioException catch (dioError) {
@@ -209,20 +214,16 @@ class _OTPScreenState extends State<OTPScreen> {
 
               const SizedBox(height: 20),
               TextButton(
-                onPressed: () async{
-                  print('alooooooooooooooooooooooooooooooooooooooooooooooo${widget.receiver}');
-                  try{
-                       final response = await DioHelper.post( 
-                       path:  ApiConstant.sendOtp
-                       , data: {
-                        'identifier': widget.receiver.trim(),
-                        
-                        
-                        
-                        }
-                      );
-                  }
-                  catch(e){
+                onPressed: () async {
+                  print(
+                    'alooooooooooooooooooooooooooooooooooooooooooooooo${widget.receiver}',
+                  );
+                  try {
+                    final response = await DioHelper.post(
+                      path: ApiConstant.sendOtp,
+                      data: {'identifier': widget.receiver.trim()},
+                    );
+                  } catch (e) {
                     print('Error resending OTP: ${e.toString()}');
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

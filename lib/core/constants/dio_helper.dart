@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
- 
+
 import 'auth_interceptor.dart';
 import 'logging_interceptors.dart';
 
@@ -34,7 +34,6 @@ class DioHelper {
 
   static Dio get dio => _dio;
 
-
   static void _addInterceptors(bool enableLogger) {
     _dio.interceptors.add(AuthInterceptor());
 
@@ -51,9 +50,7 @@ class DioHelper {
     return await _dio.get(
       path,
       queryParameters: query,
-      options: Options(
-        extra: {'withAuth': withAuth},
-      ),
+      options: Options(extra: {'withAuth': withAuth}),
     );
   }
 
@@ -67,12 +64,9 @@ class DioHelper {
       path,
       data: data,
       queryParameters: query,
-      options: Options(
-        extra: {'withAuth': withAuth},
-      ),
+      options: Options(extra: {'withAuth': withAuth}),
     );
   }
-
 
   static Future<Response> put({
     required String path,
@@ -84,9 +78,7 @@ class DioHelper {
       path,
       data: data,
       queryParameters: query,
-      options: Options(
-        extra: {'withAuth': withAuth},
-      ),
+      options: Options(extra: {'withAuth': withAuth}),
     );
   }
 
@@ -100,9 +92,7 @@ class DioHelper {
       path,
       data: data,
       queryParameters: query,
-      options: Options(
-        extra: {'withAuth': withAuth},
-      ),
+      options: Options(extra: {'withAuth': withAuth}),
     );
   }
 }

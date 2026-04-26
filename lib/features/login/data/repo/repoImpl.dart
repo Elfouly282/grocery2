@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:grocery2/core/constants/storage_keys.dart';
 import 'package:grocery2/features/login/data/repo/repo.dart';
 import '../../../../core/constants/dio_helper.dart';
 import '../../../../core/constants/preference_manager.dart';
@@ -14,13 +14,7 @@ class AuthRepoImpl implements AuthRepo {
 
   Future<UserModel?> _auth(String endPoint, Map<String, dynamic> body) async {
     try {
-       final response = await DioHelper.post(
-        path: endPoint,
-        data: body,
-         
-      );
-     
-
+      final response = await DioHelper.post(path: endPoint, data: body);
 
       if (response.data is Map<String, dynamic>) {
         final Map<String, dynamic> responseData = response.data;
@@ -37,13 +31,13 @@ class AuthRepoImpl implements AuthRepo {
         final String? token = data['token'];
 
         if (token != null) {
+          await preferenceManager.setString(StorageKeys.authToken, token);
           await preferenceManager.setString('token', token);
         }
 
         _currentUser = userData;
         return userData;
       } else {
-
         throw "Unexpected response format";
       }
     } catch (e) {
@@ -56,14 +50,8 @@ class AuthRepoImpl implements AuthRepo {
     required String email,
     required String password,
   }) async {
-     return _auth(
-      ApiConstant.login,
-      {
-        "login": email,
-        "password": password,
-      },
-    );
-   }
+    return _auth(ApiConstant.login, {"login": email, "password": password});
+  }
 
   UserModel? get currentUser => _currentUser;
 }
