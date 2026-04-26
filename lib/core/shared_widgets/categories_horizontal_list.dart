@@ -72,7 +72,7 @@ class SubCategoriesHorizontalList extends StatelessWidget {
                             child: Icon(CupertinoIcons.photo, size: 20.w),
                           ),
                   ),
-                  SizedBox(height: 8.h),
+                  SizedBox(height: 2.h),
                   Text(
                     category.name,
                     textAlign: TextAlign.center,
