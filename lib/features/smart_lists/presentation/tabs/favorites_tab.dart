@@ -87,6 +87,7 @@ class _FavoritesTabState extends State<FavoritesTab> {
                 final product = state.favorites[index];
                 return FavoriteCard(
                   product: product,
+                  isFavorited: true,
                   onToggleFavorite: () {
                     context.read<FavoritesCubit>().toggleFavorite(product.id);
                   },

@@ -51,7 +51,7 @@ class ProductEntity {
     required this.isAvailable,
     required this.expiryDate,
     required this.isExpired,
-    this.isFavorited = false,
+    required this.isFavorited,
     this.favoritedAt,
   });
 }

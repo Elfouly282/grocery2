@@ -18,12 +18,4 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
       (product) => emit(ProductDetailsSuccess(product)),
     );
   }
-
-  void toggleFavoriteStatus() {
-    if (state is ProductDetailsSuccess) {
-      final product = (state as ProductDetailsSuccess).product;
-      product.isFavorited = !product.isFavorited;
-      emit(ProductDetailsSuccess(product));
-    }
-  }
 }

@@ -22,25 +22,26 @@ class FavoritesCubit extends Cubit<FavoritesState> {
     );
   }
 
-  Future<void> toggleFavorite(int productId) async {
+  Future<bool> toggleFavorite(int productId) async {
     final result = await toggleFavoriteUseCase(productId);
-    result.fold(
-      (failure) =>
-          emit(FavoritesError(failure.message)), // Emit error to notify UI
+    return result.fold(
+      (failure) {
+        emit(FavoritesError(failure.message));
+        return false;
+      },
       (isFavorited) {
         if (state is FavoritesLoaded) {
-          final currentList = (state as FavoritesLoaded).favorites;
           if (!isFavorited) {
-            // Optimistically remove from list if toggled off
-            final updatedList = currentList
+            final updatedList = (state as FavoritesLoaded)
+                .favorites
                 .where((p) => p.id != productId)
                 .toList();
             emit(FavoritesLoaded(updatedList));
           } else {
-            // Re-load if added back to ensure fresh data
             load();
           }
         }
+        return true;
       },
     );
   }

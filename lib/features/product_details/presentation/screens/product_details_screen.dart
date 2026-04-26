@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:grocery2/core/di/get_it.dart';
+import 'package:grocery2/core/di/service_locator.dart';
 import 'package:grocery2/features/product_details/presentation/widgets/product_details.dart';
 import 'package:grocery2/features/smart_lists/presentation/cubit/favorites_cubit.dart';
+import 'package:grocery2/features/smart_lists/presentation/cubit/favorites_state.dart';
 
 import '../../../../core/constants/custom_app_bar.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -19,8 +20,16 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ProductDetailsCubit>(
-      create: (_) => getIt<ProductDetailsCubit>()..getProductDetails(productId),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ProductDetailsCubit>(
+          create: (_) =>
+              sl<ProductDetailsCubit>()..getProductDetails(productId),
+        ),
+        BlocProvider<FavoritesCubit>(
+          create: (_) => sl<FavoritesCubit>()..load(),
+        ),
+      ],
       child: const _ProductDetailsView(),
     );
   }
@@ -49,12 +58,30 @@ class _ProductDetailsView extends StatelessWidget {
               }
             },
           ),
+          BlocListener<FavoritesCubit, FavoritesState>(
+            listener: (context, state) {
+              if (state is FavoritesError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.message),
+                    backgroundColor: AppColors.error,
+                  ),
+                );
+              }
+            },
+          ),
         ],
         child: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
           builder: (context, state) {
             if (state is ProductDetailsLoading) {
               return const Center(child: CircularProgressIndicator());
-            } else if (state is ProductDetailsSuccess) {
+            }
+
+            if (state is ProductDetailsError) {
+              return Center(child: Text(state.message));
+            }
+
+            if (state is ProductDetailsSuccess) {
               final product = state.product;
 
               return SingleChildScrollView(
@@ -63,18 +90,29 @@ class _ProductDetailsView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ProductImage(
-                        imageUrl: product.image,
-                        product: product,
-                        onToggleFavorite: () {
-                          context
-                              .read<ProductDetailsCubit>()
-                              .toggleFavoriteStatus();
-                          context.read<FavoritesCubit>().toggleFavorite(
-                            product.id,
+                      BlocSelector<FavoritesCubit, FavoritesState, bool>(
+                        selector: (state) {
+                          if (state is FavoritesLoaded) {
+                            return state.favorites.any(
+                              (f) => f.id == product.id,
+                            );
+                          }
+                          return false;
+                        },
+                        builder: (context, isFavorited) {
+                          return ProductImage(
+                            imageUrl: product.image,
+                            product: product,
+                            isFavorite: isFavorited,
+                            onToggleFavorite: () {
+                              context.read<FavoritesCubit>().toggleFavorite(
+                                product.id,
+                              );
+                            },
                           );
                         },
                       ),
+
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -105,9 +143,8 @@ class _ProductDetailsView extends StatelessWidget {
                   ),
                 ),
               );
-            } else if (state is ProductDetailsError) {
-              return Center(child: Text(state.message));
             }
+
             return const SizedBox.shrink();
           },
         ),

@@ -21,7 +21,10 @@ class FavoritesRemoteDataSourceImpl implements FavoritesRemoteDataSource {
   @override
   Future<bool> toggleFavorite(int productId) async {
     final response = await DioHelper.post(
-      path: ApiConstant.toggleFavorite.replaceFirst(':id', productId.toString()),
+      path: ApiConstant.toggleFavorite.replaceFirst(
+        ':id',
+        productId.toString(),
+      ),
       withAuth: true,
     );
     return response.data['data']['is_favorited'];

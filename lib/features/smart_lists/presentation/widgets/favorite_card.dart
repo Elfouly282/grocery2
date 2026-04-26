@@ -9,11 +9,13 @@ import '../../../product_details/domain/entities/product_entity.dart';
 class FavoriteCard extends StatelessWidget {
   final ProductEntity product;
   final VoidCallback onToggleFavorite;
+  final bool isFavorited;
 
   const FavoriteCard({
     super.key,
     required this.product,
     required this.onToggleFavorite,
+    required this.isFavorited,
   });
 
   @override
@@ -59,10 +61,10 @@ class FavoriteCard extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
-                      product.isFavorited
+                      isFavorited
                           ? Icons.favorite
                           : Icons.favorite_border,
-                      color: product.isFavorited
+                      color: isFavorited
                           ? AppColors.error
                           : AppColors.grey,
                     ),

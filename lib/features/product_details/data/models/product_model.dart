@@ -27,7 +27,7 @@ class ProductModel extends ProductEntity {
     required super.expiryDate,
     required super.isExpired,
 
-    super.isFavorited = false,
+    required super.isFavorited,
     super.favoritedAt,
   });
 

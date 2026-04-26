@@ -77,8 +77,8 @@ class ProductImage extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  product.isFavorited ? Icons.favorite : Icons.favorite_border,
-                  color: product.isFavorited ? AppColors.error : AppColors.grey,
+                  isFavorite ? Icons.favorite : Icons.favorite_border,
+                  color: isFavorite ? AppColors.error : AppColors.grey,
                 ),
               ),
             ),
